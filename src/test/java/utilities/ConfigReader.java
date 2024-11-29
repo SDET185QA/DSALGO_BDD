@@ -28,7 +28,7 @@ public class ConfigReader {
         }
     }
 
-
+    //Method to retrieve dsalgo base url
 	public static String getApplicationUrl(String key) {
 		String url = properties.getProperty(key);
 		System.out.println(url);
