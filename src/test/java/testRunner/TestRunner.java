@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions;
 		plugin = {"pretty", "html:target/dsalgoBDD.html"}, //reporting purpose
 		
 		monochrome=false,  //console output color
-		tags = "@TestScenario01_login",//tags from feature file
+		tags = "",//tags from feature file
 		features = {".///Features/"}, //location of feature files
 		glue= "stepDefinitions") //location of step definition files
 public class TestRunner {
