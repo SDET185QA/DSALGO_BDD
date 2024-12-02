@@ -11,7 +11,8 @@ import io.cucumber.junit.CucumberOptions;
 		
 		monochrome=false,  //console output color
 		tags = "@TestScenario01_login",//tags from feature file
-		features = {".///Features/"}, //location of feature files
+	//	features = {".///Features/"}, //location of feature files
+		features = { "src/test/resources/features" }, 
 		glue= "stepDefinitions") //location of step definition files
 public class TestRunner {
 	
