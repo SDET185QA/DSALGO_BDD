@@ -16,11 +16,9 @@ public class LoginSteps {
 	String homepageurl = ConfigReader.getApplicationUrl("url");
 	
 
-	@Given("The user is on the DS Algo Home Page {string}")
-	public void the_user_is_on_the_ds_algo_home_page(String homepageurl_) {
-		System.out.println("THIS IS THE HOME PAGE");
-		System.out.println(homepageurl);//have to ask mentor
-		driver.get(homepageurl_);
+	@Given("The user is on the DS Algo Home Page")
+	public void the_user_is_on_the_ds_algo_home_page() {
+		driver.get(homepageurl);
 		
 		
 	}
