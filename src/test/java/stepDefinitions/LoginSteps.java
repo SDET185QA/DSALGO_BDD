@@ -1,6 +1,7 @@
 package stepDefinitions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import static org.testng.Assert.assertEquals;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
