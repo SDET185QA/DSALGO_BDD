@@ -4,12 +4,22 @@
   <artifactId>DSALGO_QualityQuesters</artifactId>
   <version>0.0.1-SNAPSHOT</version>
    <dependencies>
+   
+   <!-- to oversome the error java.lang.NoClassDefFoundError: com/sun/jna/FunctionMapper -->
+<dependency>
+    <groupId>net.java.dev.jna</groupId>
+    <artifactId>jna</artifactId>
+    <version>5.12.1</version>
+</dependency>
+
   <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
 <dependency>
     <groupId>org.seleniumhq.selenium</groupId>
     <artifactId>selenium-java</artifactId>
     <version>4.27.0</version>
 </dependency>
+
+
 
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
 <dependency>
@@ -18,12 +28,7 @@
     <version>7.20.1</version>
 </dependency>
 
-<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-html -->
-<dependency>
-    <groupId>io.cucumber</groupId>
-    <artifactId>cucumber-html</artifactId>
-    <version>0.2.7</version>
-</dependency>
+
 
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 <dependency>
@@ -40,12 +45,23 @@
     <scope>test</scope>
 </dependency>
 
-<!-- to oversome the error java.lang.NoClassDefFoundError: com/sun/jna/FunctionMapper -->
+
+
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 <dependency>
-    <groupId>net.java.dev.jna</groupId>
-    <artifactId>jna</artifactId>
-    <version>5.12.1</version>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-testng</artifactId>
+    <version>7.20.1</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+<dependency>
+    <groupId>io.qameta.allure</groupId>
+    <artifactId>allure-testng</artifactId>
+    <version>2.29.1</version>
+</dependency>
+
+
 
   </dependencies>
 </project>
