@@ -114,55 +114,11 @@ public void the_user_is_in_the_array_page_after_sign_in() {
 
 
 
-	
-
-
-
-
-	
-
-
-
-
-	
-
-
-
-
-
-	
-
-
-
-
-
-	
-
-
 @When("The user clicks {string} button in Arrays in Python page")
 public void the_user_clicks_button_in_arrays_in_python_page(String string) {
     // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
 }
-
-
-	
-
-
-
-
-
-	
-
-
-
-
-
-
-	
-
-
-
 
 
 
