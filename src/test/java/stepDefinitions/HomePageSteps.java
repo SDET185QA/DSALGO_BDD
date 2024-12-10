@@ -40,8 +40,8 @@ public class HomePageSteps {
 	   homePage.dropdown(Option);
 	}
 
-	@Then("User not signed in alert message displyed {string}")
-	public void user_not_signed_in_alert_message_displyed(String message) {
+	@Then("User not signed in alert message displyed")
+	public void user_not_signed_in_alert_message_displyed() {
       //  System.out.println("ser not signed in alert message displyed");
         String alert =homePage.getAlert();
         System.out.println("ALERT"+alert);
