@@ -6,8 +6,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import webDriverManager.DriverFactory;
+
 public class HomePagePOF {
-    public  WebDriver driver =new ChromeDriver();
+    //public  WebDriver driver =new ChromeDriver();
+	public static WebDriver initdriver = DriverFactory.webdriverinitialize();
+		public static WebDriver driver = DriverFactory.getDriver();
     String url ="https://dsportalapp.herokuapp.com";
     String homePageurl="https://dsportalapp.herokuapp.com/home";
     //Get Started Button
