@@ -12,7 +12,7 @@ public class DriverFactory {
 		//WebDriverManager is a utility class that manages the WebDriver binaries
 		//Use WebDriverManager to configure the ChromeDriver
         // This will automatically download and configure the ChromeDriver binary
-		if (browser.equalsIgnoreCase(browser)) {
+		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			 // Create a new instance of ChromeOptions
 	        // This allows us to configure the Chrome browser
