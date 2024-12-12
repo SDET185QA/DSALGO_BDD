@@ -43,8 +43,9 @@ public class LoginSteps {
 
 	@When("User clicks on login button with all empty field")
 	public void user_clicks_on_login_button_with_all_empty_field() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		loginpagefactory.clickOnSignin();
+
+		loginpagefactory.clickonLogin();
 	}
 
 	@Then("User verify the message at username as {string}")
@@ -54,15 +55,16 @@ public class LoginSteps {
 	}
 
 	@When("User clicks on login button with username as {string}")
-	public void user_clicks_on_login_button_with_username_as(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void user_clicks_on_login_button_with_username_as(String username) {
+		loginpagefactory.clickOnSignin();
+		loginpagefactory.enter_user_name(username);
+		loginpagefactory.clickonLogin();
 	}
 
 	@Then("User verify the message at password as {string}")
-	public void user_verify_the_message_at_password_as(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void user_verify_the_message_at_password_as(String validationMessage) {
+		String password ="password";
+		loginpagefactory.validate_login_with_blank_credentials(validationMessage,password);
 	}
 
 	@When("User clicks on login button with password as {string}")
@@ -111,20 +113,24 @@ public class LoginSteps {
 
 	@When("The user clicks on signout button")
 	public void the_user_clicks_on_signout_button() {
-		loginpagefactory.clickOnSignin();
-		LoggerLoad.info("The user succesfully clicked on signout button");
+		loginpagefactory.clickonLogout();
+	    //loginpagefactory.clickOnSignin();
+	    System.out.println("The user succesfully clicked on signout button");
 	}
 
 	@Then("Verify the logout message {string}")
-	public void verify_the_logout_message(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void verify_the_logout_message(String expectedLogoutMessage) {
+		 loginpagefactory.getlogoutAlert(expectedLogoutMessage);
 	}
 
-	@Given("The user is in home page")
-	public void the_user_is_in_home_page() {
-		loginpagefactory.clickonLogout();
-		LoggerLoad.info("The user succesfully clicked on logout button");
+	@Given("The user is in home page and enters  email as {string} and password as {string}")
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as(String username, String password) {
+		loginpagefactory.loginpage();
+		loginpagefactory.enter_login_credentails(username,password);
+		loginpagefactory.clickonLogin();
+		loginpagefactory.getTitleHomePage();
+	    
+	    System.out.println("The user succesfully clicked on logout button");
 	}	
 	
 	

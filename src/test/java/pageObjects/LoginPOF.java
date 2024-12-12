@@ -14,7 +14,7 @@ import utilities.LoggerLoad;
 
 public class LoginPOF {
 	// Define the WebDriver instance and instantiate it
-	public static WebDriver initdriver = DriverFactory.webdriverinitialize();
+	//public static WebDriver initdriver = DriverFactory.webdriverinitialize();
 	public static WebDriver driver = DriverFactory.getDriver();
 	String loginpageurl = ConfigReader.getloginUrl("loginpageurl");
 		
@@ -37,6 +37,9 @@ public class LoginPOF {
 		
 		@FindBy(xpath = "//a[@href='/logout']")
 	    private WebElement signoutButton;
+		
+		@FindBy(xpath = "//div[@class='alert alert-primary']")
+	    private WebElement logoutalert;
 		
 		// Constructor to initialize the page object with the WebDriver instance
 		public LoginPOF() {
@@ -102,13 +105,29 @@ public void loginpage() {
 				LoggerLoad.info("Actual error message for blank password is   "+ message );
 				LoggerLoad.info("Validating the error message" );
 				Assert.assertEquals(validationMessage, message);
-			}
-			
-			
-			
+			}		
 			
 			
 		}
+	
+	public void enter_user_name(String username) {
+		LoggerLoad.info("Clearing the username fields");
+		usernameField.clear();
+		LoggerLoad.info("Entering the  User Name  "+ username );
+		usernameField.sendKeys(username);	
+	}
+	
+	public void getTitleHomePage() {
+		String titile = driver.getTitle();
+		System.out.println(titile);
+	}
+	
+	public void getlogoutAlert(String expectedLogoutMessage) {
+		String logoutMessage = logoutalert.getText();
+		System.out.println(logoutMessage);
+		Assert.assertEquals(expectedLogoutMessage, logoutMessage);
+	}
+	
 		
 		
 
