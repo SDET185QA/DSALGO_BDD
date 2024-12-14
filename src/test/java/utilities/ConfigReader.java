@@ -58,6 +58,15 @@ public class ConfigReader {
 			throw new RuntimeException("url not specified in the Configuration.properties file.");
 	}
 	
+	public static String getRegistrationUrl() {
+		String registrationPageUrl = properties.getProperty("registerPageUrl");
+		System.out.println(registrationPageUrl);
+		if (registrationPageUrl != null)
+			return registrationPageUrl;
+		else
+			throw new RuntimeException("Register url not specified in the Configuration.properties file.");
+	}
+	
 	public static String getBrowserType() {
 		String browser = properties.getProperty("browser");
 		System.out.println("Get property BrowserType");
@@ -67,7 +76,8 @@ public class ConfigReader {
 			throw new RuntimeException("browser not specified in the Configuration.properties file.");
 	}
 	
-	
+}
+
 //	public static void main(String[] args) {
 //		ConfigReader config = new ConfigReader();
 //		String key = "url";	
@@ -92,4 +102,3 @@ public class ConfigReader {
 
 	
 
-}
