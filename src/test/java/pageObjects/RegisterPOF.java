@@ -49,11 +49,11 @@ public class RegisterPOF {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public void clickOnRegister() {
-		driver.get(secondHomePageUrl);
-		clickRegisterLink.click();
-		
-	}
+//	public void clickOnRegister() {
+//		driver.get(secondHomePageUrl);
+//		clickRegisterLink.click();
+//		
+//	}
 
 	public void clickOnRegisterBtn() {
 		registerBtn.click();

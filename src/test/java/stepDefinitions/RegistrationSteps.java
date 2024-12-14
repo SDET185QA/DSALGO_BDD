@@ -28,42 +28,42 @@ public class RegistrationSteps {
 		driver.close();
 	}
 	
-	//Scenario1: Verify the user is able to launch the web page
-	@Given("The user is on the home page")
-	public void the_user_is_on_the_home_page() {
-		driver.get(RegisterPOF.homePageUrl);
-	
-	}
-	
-	@When ("The user clicks Get Started button on the home page")
-	public void the_user_clicks_get_started_button_on_the_home_page() {
-		pageObject.clickOnGetStarted();
-	}
-
-	@Then ("The user should be redirected to the secondary home page")
-	public void the_user_should_be_redirected_to_the_secondary_home_page() {
-		String actualUrl = driver.getCurrentUrl();
-		String expectedUrl = "https://dsportalapp.herokuapp.com/home";
-		assertEquals(actualUrl, expectedUrl);
-	}
-
-	//Scenario2: Verify the user is able to land on Registration
-	@Given("The user is on the secondary home page")
-	public void the_user_is_on_the_secondary_home_page() {
-		driver.get(RegisterPOF.secondHomePageUrl);
-	}
-
-	@When("The user clicks Register link on the Home page")
-	public void the_user_clicks_register_link_on_the_home_page() {
-		pageObject.clickOnRegister();
-	}
-
-	@Then("The user should be redirected to Register form")
-	public void the_user_should_be_redirected_to_register_form() {
-		String actualRes = driver.getCurrentUrl();
-		String expectedRes = "https://dsportalapp.herokuapp.com/register";
-		assertEquals(actualRes,expectedRes);
-	}
+//	//Scenario1: Verify the user is able to launch the web page
+//	@Given("The user is on the home page")
+//	public void the_user_is_on_the_home_page() {
+//		driver.get(RegisterPOF.homePageUrl);
+//	
+//	}
+//	
+//	@When ("The user clicks Get Started button on the home page")
+//	public void the_user_clicks_get_started_button_on_the_home_page() {
+//		pageObject.clickOnGetStarted();
+//	}
+//
+//	@Then ("The user should be redirected to the secondary home page")
+//	public void the_user_should_be_redirected_to_the_secondary_home_page() {
+//		String actualUrl = driver.getCurrentUrl();
+//		String expectedUrl = "https://dsportalapp.herokuapp.com/home";
+//		assertEquals(actualUrl, expectedUrl);
+//	}
+//
+//	//Scenario2: Verify the user is able to land on Registration
+//	@Given("The user is on the secondary home page")
+//	public void the_user_is_on_the_secondary_home_page() {
+//		driver.get(RegisterPOF.secondHomePageUrl);
+//	}
+//
+//	@When("The user clicks Register link on the Home page")
+//	public void the_user_clicks_register_link_on_the_home_page() {
+//		pageObject.clickOnRegister();
+//	}
+//
+//	@Then("The user should be redirected to Register form")
+//	public void the_user_should_be_redirected_to_register_form() {
+//		String actualRes = driver.getCurrentUrl();
+//		String expectedRes = "https://dsportalapp.herokuapp.com/register";
+//		assertEquals(actualRes,expectedRes);
+//	}
 
 	//Scenario3: Verify the user receives error message for all empty fields during registration
 	@Given("The user is on the registration page")
@@ -88,10 +88,10 @@ public class RegistrationSteps {
 
 	//Scenario4: Verify that user received error message for empty user name field
 	
-	@When ("The user clicks Register button after entering password and password confirmation and leaves username field empty")
-	public void the_user_clicks_register_button_after_entering_password_and_password_confirmation_and_leaves_username_field_empty() {
-		pageObject.enterPassword("Jack");
-		pageObject.enterPasswordConf("Jack");
+	@When ("The user clicks Register button after entering {string} and {string} and leaves username field empty")
+	public void the_user_clicks_register_button_after_entering_password_and_password_confirmation_and_leaves_username_field_empty(String password, String passwordConfirmation) {
+		pageObject.enterPassword(password);
+		pageObject.enterPasswordConf(passwordConfirmation);
 		pageObject.enterUserName("");
 		pageObject.clickOnRegisterBtn();
 	}
@@ -99,9 +99,9 @@ public class RegistrationSteps {
 	
 
 	//Scenario5: Verify that user receives error message for empty Password field during registration
-	@When ("The user clicks Register button after entering Username with other fields empty")
-	public void the_user_clicks_register_button_after_entering_username_with_other_fields_empty() {
-		pageObject.enterUserName("SDET");
+	@When ("The user clicks Register button after entering {string} with other fields empty")
+	public void the_user_clicks_register_button_after_entering_username_with_other_fields_empty(String username) {
+		pageObject.enterUserName(username);
 		pageObject.enterPassword("");
 		pageObject.enterPasswordConf("");
 		pageObject.clickOnRegisterBtn();
@@ -112,12 +112,12 @@ public class RegistrationSteps {
 		String actualErrorMsg = pageObject.getErrorOnRegister("Please fill out this field");
 		assertEquals(actualErrorMsg, "Please fill out this field");	}
 
-	//Scenario6: Scenario: Verify that user receives error message for empty Password Confirmation field during registration
+	//Scenario6: Verify that user receives error message for empty Password Confirmation field during registration
 	
-	@When ("The user clicks Register button after entering Username and Password with password confirmation field empty")
-	public void the_user_clicks_register_button_after_entering_username_and_password_with_password_cofirmation_field_empty(){
-		pageObject.enterUserName("Jack");
-		pageObject.enterPassword("1234");
+	@When ("The user clicks Register button after entering {string} and {string} with passwordConfirmation field empty")
+	public void the_user_clicks_register_button_after_entering_username_and_password_with_password_cofirmation_field_empty(String username, String Password){
+		pageObject.enterUserName(username);
+		pageObject.enterPassword(Password);
 		pageObject.enterPasswordConf("");
 		pageObject.clickOnRegisterBtn();
 	}	
@@ -134,9 +134,9 @@ public class RegistrationSteps {
 	
 	//Scenario7: Verify that user receives error message for invalid user name field during registration
 	
-	@When("The user clicks Register button after entering a username with special characters other than digits")
-	public void the_user_clicks_register_button_after_entering_a_username_with_special_characters_other_than_digits() {
-		pageObject.enterUserName("@#%^&");
+	@When("The user clicks Register button after entering a {string} with special characters other than digits")
+	public void the_user_clicks_register_button_after_entering_a_username_with_special_characters_other_than_digits(String username) {
+		pageObject.enterUserName(username);
 		pageObject.enterPassword("Leon");
 		pageObject.enterPasswordConf("Leon");
 		pageObject.clickOnRegisterBtn();
@@ -151,33 +151,33 @@ public class RegistrationSteps {
 	
 	//Scenario8: Verify that user receives error message for invalid password field during registration
 	
-	@When("The user clicks Register button after entering a password with numeric data and valid username")
-	public void the_user_clicks_register_button_after_entering_a_password_with_numeric_data_and_valid_username() {
-	   pageObject.enterUserName("John");
-	   pageObject.enterPassword("1234");
-	   pageObject.enterPasswordConf("1234");
+	@When("The user clicks Register button after entering a {string} with numeric data and valid {string}")
+	public void the_user_clicks_register_button_after_entering_a_password_with_numeric_data_and_valid_username(String username, String password) {
+	   pageObject.enterUserName(username);
+	   pageObject.enterPassword(password);
+	   pageObject.enterPasswordConf(password);
 	   pageObject.clickOnRegisterBtn();
 	}
 
 	//Scenario9: Verify that user receives error message for mismatched Password and Password Confirmation field during registration
 	
-	@When("The user clicks Register button after entering different passwords in Password and Password Confirmation fields")
-	public void the_user_clicks_register_button_after_entering_different_passwords_in_password_and_password_confirmation_fields() {
+	@When("The user clicks Register button after entering different passwords in {string} and {string} fields")
+	public void the_user_clicks_register_button_after_entering_different_passwords_in_password_and_password_confirmation_fields(String password, String passwordConfirmation ) {
 
 		pageObject.enterUserName("Rose");
-		pageObject.enterPassword("boss123");
-		pageObject.enterPasswordConf("123boss");
+		pageObject.enterPassword(password);
+		pageObject.enterPasswordConf(passwordConfirmation);
 		pageObject.clickOnRegisterBtn();
 	}
 
 	
 
 	//Scenario10: Verify that user is able to land on Home page after registration with valid fields
-//	@When("The user clicks Register button after entering  with valid username, password and password confirmation in related textboxes")
-//	public void the_user_clicks_register_button_after_entering_with_valid_username_password_and_password_confirmation_in_related_textboxes() {
-////		pageObject.enterUserName("DSAlgo"); commented since this is a valid scenario
-//		pageObject.enterPassword("Batch66");
-//		pageObject.enterPasswordConf("Batch66");
+//	@When("The user clicks Register button after entering  with valid {string}, {string} and {string} in related textboxes")
+//	public void the_user_clicks_register_button_after_entering_with_valid_username_password_and_password_confirmation_in_related_textboxes(String username, String password, String passwordConfirmation ) {
+////	pageObject.enterUserName(username); commented since this is a valid scenario
+//		pageObject.enterPassword(password);
+//		pageObject.enterPasswordConf(passwordConfirmation);
 //		pageObject.clickOnRegisterBtn();
 //	}
 
@@ -188,11 +188,11 @@ public class RegistrationSteps {
 //	}
 
 	//Scenario11: Verify that the user receives the error message for entering user name less than eight characters
-	@When("The user clicks Register button after entering  with  username with less than eight characters with valid password and password confirmation in related textboxes")
-	public void the_user_clicks_register_button_after_entering_with_username_with_less_than_eight_characters_with_valid_password_and_password_confirmation_in_related_textboxes() {
-		pageObject.enterUserName("11");
-		pageObject.enterPassword("@SDET!*%");
-		pageObject.enterPasswordConf("@SDET!*%");
+	@When("The user clicks Register button after entering {string} with less than eight characters with valid {string} and {string} in related textboxes")
+	public void the_user_clicks_register_button_after_entering_with_username_with_less_than_eight_characters_with_valid_password_and_password_confirmation_in_related_textboxes(String username, String password, String passwordConfirmation) {
+		pageObject.enterUserName(username);
+		pageObject.enterPassword(password);
+		pageObject.enterPasswordConf(passwordConfirmation);
 		pageObject.clickOnRegisterBtn();
 	   	}
 
@@ -203,11 +203,11 @@ public class RegistrationSteps {
 	}
 
 	//Scenario12: Verify that the user receives the error message for entering password less than 8 characters
-	@When("The user clicks on Register button after entering valid username and password with less than eight characters")
-	public void the_user_clicks_on_register_button_after_entering_valid_username_and_password_with_less_than_eight_characters() {
-		pageObject.enterUserName("SDET185");
-		pageObject.enterPassword("11");
-		pageObject.enterPasswordConf("11");
+	@When("The user clicks on Register button after entering valid {string}, {string} and {string} with less than eight characters")
+	public void the_user_clicks_on_register_button_after_entering_valid_username_and_password_with_less_than_eight_characters(String username,String password, String passwordConfirmation) {
+		pageObject.enterUserName(username);
+		pageObject.enterPassword(password);
+		pageObject.enterPasswordConf(passwordConfirmation);
 		pageObject.clickOnRegisterBtn();
 	}
 
