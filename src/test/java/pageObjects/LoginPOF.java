@@ -3,6 +3,7 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,7 +14,7 @@ import utilities.LoggerLoad;
 
 public class LoginPOF {
 	// Define the WebDriver instance and instantiate it
-	public static WebDriver initdriver = DriverFactory.webdriverinitialize();
+	//public static WebDriver initdriver = DriverFactory.webdriverinitialize();
 	public static WebDriver driver = DriverFactory.getDriver();
 	String loginpageurl = ConfigReader.getloginUrl("loginpageurl");
 		
@@ -36,6 +37,9 @@ public class LoginPOF {
 		
 		@FindBy(xpath = "//a[@href='/logout']")
 	    private WebElement signoutButton;
+		
+		@FindBy(xpath = "//div[@class='alert alert-primary']")
+	    private WebElement logoutalert;
 		
 		// Constructor to initialize the page object with the WebDriver instance
 		public LoginPOF() {
@@ -85,6 +89,47 @@ public void loginpage() {
 			
 					
 				}
+	public void validate_login_with_blank_credentials(String validationMessage,String field) {
+			
+			LoggerLoad.info("Expected error message is   "+ validationMessage );
+			
+			if (field.equalsIgnoreCase("username")) {
+			@SuppressWarnings("deprecation")
+			String message = usernameField.getAttribute("validationMessage");
+			LoggerLoad.info("Actual error message for blank username is   "+ message );
+			LoggerLoad.info("Validating the error message" );
+			Assert.assertEquals(validationMessage, message);
+			} else if (field.equalsIgnoreCase("password")) {
+				@SuppressWarnings("deprecation")
+				String message = passwordField.getAttribute("validationMessage");
+				LoggerLoad.info("Actual error message for blank password is   "+ message );
+				LoggerLoad.info("Validating the error message" );
+				Assert.assertEquals(validationMessage, message);
+			}		
+			
+			
+		}
+	
+	public void enter_user_name(String username) {
+		LoggerLoad.info("Clearing the username fields");
+		usernameField.clear();
+		LoggerLoad.info("Entering the  User Name  "+ username );
+		usernameField.sendKeys(username);	
+	}
+	
+	public void getTitleHomePage() {
+		String titile = driver.getTitle();
+		System.out.println(titile);
+	}
+	
+	public void getlogoutAlert(String expectedLogoutMessage) {
+		String logoutMessage = logoutalert.getText();
+		System.out.println(logoutMessage);
+		Assert.assertEquals(expectedLogoutMessage, logoutMessage);
+	}
+	
+		
+		
 
 
 
