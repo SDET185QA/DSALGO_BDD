@@ -7,11 +7,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverFactory {
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
-	//public static WebDriver driver;
+
 	public static WebDriver webdriverinitialize(String browser) {
+		
 		//WebDriverManager is a utility class that manages the WebDriver binaries
 		//Use WebDriverManager to configure the ChromeDriver
         // This will automatically download and configure the ChromeDriver binary
+		if (driver.get() == null) {
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			 // Create a new instance of ChromeOptions
@@ -23,11 +25,14 @@ public class DriverFactory {
 			// Create a new instance of the ChromeDriver
 	        // We pass in the ChromeOptions instance to configure the browser
 			driver.set(new ChromeDriver(options));
+		}else {
+            throw new RuntimeException("Browser type not supported: " + browser);
 		}
-		
-	
-		
-		
+		driver.get().manage().window().maximize();
+		}
+		else {
+            System.out.println("Driver is already initialized");
+        }
 	
 		
 		return driver.get();
@@ -38,5 +43,13 @@ public class DriverFactory {
 		return driver.get();
 		
 	}
+	
+	// Close the WebDriver
+    public  void closeDriver() {
+        if (driver.get() != null) {
+            driver.get().quit();
+            driver.remove(); // Removes driver from ThreadLocal to clean up resources
+        }
+    }
 
 }

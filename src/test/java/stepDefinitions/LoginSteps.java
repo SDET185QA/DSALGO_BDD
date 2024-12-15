@@ -19,20 +19,19 @@ public class LoginSteps {
 	
 	@Given("The user is on the DS Algo Home Page")
 	public void the_user_is_on_the_ds_algo_home_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		loginpagefactory.homepage();
+		
+		loginpagefactory.clickOnGetstarted();
 	}
 
 	@When("The user should click the Sign in link")
 	public void the_user_should_click_the_sign_in_link() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+		loginpagefactory.clickOnSignin();
 	}
 
-	@Then("The user should be redirected to Sign in page")
-	public void the_user_should_be_redirected_to_sign_in_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Then("The user should be redirected to Sign in page and the title of the page should be {string}")
+	public void the_user_should_be_redirected_to_sign_in_page_and_the_title_of_the_page_should_be(String expectedTitle) {
+		loginpagefactory.getTitleHomePage(expectedTitle);
 	}
 
 	@Given("The user is on the DS Algo Login Page")
@@ -68,9 +67,10 @@ public class LoginSteps {
 	}
 
 	@When("User clicks on login button with password as {string}")
-	public void user_clicks_on_login_button_with_password_as(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void user_clicks_on_login_button_with_password_as(String password) {
+		loginpagefactory.clickOnSignin();
+		loginpagefactory.enter_user_password(password);
+		loginpagefactory.clickonLogin();
 	}
 
 	@When("User enters email as {string} and password as {string}")
@@ -105,17 +105,19 @@ public class LoginSteps {
 	    throw new io.cucumber.java.PendingException();
 	}
 
-	@Given("The user is in the DataStructures page")
-	public void the_user_is_in_the_data_structures_page() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	@Given("The user is in home page and enters  email as {string} and password as {string} and in {string}")
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in(String username, String password, String string3) {
+		loginpagefactory.loginpage();
+		loginpagefactory.enter_login_credentails(username,password);
+		loginpagefactory.clickonLogin();
+		loginpagefactory.datastructurepage();
 	}
 
 	@When("The user clicks on signout button")
 	public void the_user_clicks_on_signout_button() {
 		loginpagefactory.clickonLogout();
-	    //loginpagefactory.clickOnSignin();
-	    System.out.println("The user succesfully clicked on signout button");
+	  
+		LoggerLoad.info("The user succesfully clicked on signout button");
 	}
 
 	@Then("Verify the logout message {string}")
@@ -128,9 +130,9 @@ public class LoginSteps {
 		loginpagefactory.loginpage();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
-		loginpagefactory.getTitleHomePage();
+		
 	    
-	    System.out.println("The user succesfully clicked on logout button");
+		LoggerLoad.info("The user succesfully clicked on logout button");
 	}	
 	
 	

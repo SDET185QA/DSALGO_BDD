@@ -80,7 +80,7 @@ public class ConfigReader {
 
 //	public static void main(String[] args) {
 //		ConfigReader config = new ConfigReader();
-//		String key = "url";	
+//		String key = "browser";	
 //		config.getApplicationUrl(key);		
 //	}
 

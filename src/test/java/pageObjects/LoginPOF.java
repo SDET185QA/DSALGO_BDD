@@ -17,6 +17,8 @@ public class LoginPOF {
 	//public static WebDriver initdriver = DriverFactory.webdriverinitialize();
 	public static WebDriver driver = DriverFactory.getDriver();
 	String loginpageurl = ConfigReader.getloginUrl("loginpageurl");
+	String applicationurl = ConfigReader.getloginUrl("applicationurl");
+	String datastructureurl = ConfigReader.getloginUrl("datastructureurl");
 		
 		
 		 // Use the @FindBy annotation to identify the elements on the page
@@ -117,15 +119,41 @@ public void loginpage() {
 		usernameField.sendKeys(username);	
 	}
 	
-	public void getTitleHomePage() {
-		String titile = driver.getTitle();
-		System.out.println(titile);
+	public void getTitleHomePage(String expectedTitle) {
+		String actualTitle = driver.getTitle();
+		System.out.println(actualTitle);
+		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 	
 	public void getlogoutAlert(String expectedLogoutMessage) {
 		String logoutMessage = logoutalert.getText();
 		System.out.println(logoutMessage);
 		Assert.assertEquals(expectedLogoutMessage, logoutMessage);
+	}
+	public void homepage() {
+		
+		LoggerLoad.info("Opening the Login page url"+applicationurl );
+		driver.get(applicationurl);
+			
+	}
+
+	public void clickOnGetstarted() {
+		
+		LoggerLoad.info("Opening the Login page url"+loginpageurl );
+	    getStarted.click();
+		
+	}
+	
+	public void enter_user_password(String password) {
+		LoggerLoad.info("Clearing the username fields");
+		passwordField.clear();
+		LoggerLoad.info("Entering the  User Name  "+ password );
+		passwordField.sendKeys(password);	
+	}
+	public void datastructurepage() {
+		
+		LoggerLoad.info("Opening the datastructure page url"+datastructureurl );
+		driver.get(datastructureurl);	
 	}
 	
 		
