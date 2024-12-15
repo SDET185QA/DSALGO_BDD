@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.RegisterPOF;
+import webDriverManager.DriverFactory;
 
 import static org.testng.Assert.assertEquals;
 
@@ -15,19 +16,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class RegistrationSteps {
 	
-	ChromeDriver driver;
+	WebDriver driver = DriverFactory.getDriver();
 	RegisterPOF pageObject = new RegisterPOF();
 
-	@Before
-	public void initialize() {
-		driver = new ChromeDriver();
-	}
-	
-	@After
-	public void cleanup() {
-		driver.close();
-	}
-	
 //	//Scenario1: Verify the user is able to launch the web page
 //	@Given("The user is on the home page")
 //	public void the_user_is_on_the_home_page() {
