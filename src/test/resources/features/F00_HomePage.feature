@@ -21,7 +21,7 @@ Feature: Launch Start page and Test Home Page
   
    Given User is on HomePage
    When The user select any dropdown menu "<value>" without sigining in
-   Then User not signed in alert message displyed
+   Then User not signed in alert message displyed "You are not logged in"
    
    Examples:
    | value       |
