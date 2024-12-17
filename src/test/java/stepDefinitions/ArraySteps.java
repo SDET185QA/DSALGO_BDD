@@ -1,13 +1,27 @@
 package stepDefinitions;
 
+import static org.testng.Assert.assertEquals;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.ArrayPOF;
+import utilities.ConfigReader;
+import utilities.ExcelReader;
 import utilities.LoggerLoad;
 
 public class ArraySteps {
 	public ArrayPOF arraypagefactory = new ArrayPOF();
+	String PythonCode;
+    String Output;
+    String ExpectedResult,ExpectedError,ExpectedMsg;
+	String Excelpath=ConfigReader.getexcelfilepath();
 	
 	@Given("The user is on the home page of DS-ALGO application")
 	public void the_user_is_on_the_home_page_of_ds_algo_application() {
@@ -135,6 +149,109 @@ public class ArraySteps {
 		arraypagefactory.clickOnarrayGetStarted();
 		arraypagefactory.basicOperationList();
 	}
+	
+	
+	@Given("User is on {string} after logged in")
+	public void user_is_on_after_logged_in(String pagename) {
+		String page_name=pagename.replaceAll("\\s+", "");
+		arraypagefactory.navigateTo(page_name);
+        LoggerLoad.info("User is on the "+pagename + " after logged in");
+	}
+
+	@When("User enters valid Python code from sheet {string} and {int}")
+	public void user_enters_valid_python_code_from_sheet_and(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException, InterruptedException {
+		LoggerLoad.info("User is on Try Editor page");
+        ExcelReader reader = new ExcelReader();
+
+        List<Map<String, String>> testdata = reader.getData(Excelpath, SheetName);
+        LoggerLoad.info(SheetName);
+        PythonCode = testdata.get(RowNumber).get("PythonCode");
+        ExpectedResult=testdata.get(RowNumber).get("Output");
+        LoggerLoad.info("Expected Result is "+ExpectedResult);
+        LoggerLoad.info("User enters PythonCode as \" " + PythonCode);
+        
+        if ( PythonCode!= null )
+        	arraypagefactory.fetchPythonCode(PythonCode);
+	}
+
+	@When("User clicks on Run button")
+	public void user_clicks_on_run_button() {
+		LoggerLoad.info("User clicks on Run Button");
+		arraypagefactory.clickRunButton();
+	}
+
+	@Then("User should be able to see the output")
+	public void user_should_be_able_to_see_the_output() {
+		LoggerLoad.info("User gets the Result of entered Python Code");
+        String fetchOutput = arraypagefactory.fetchOutput();
+        
+        LoggerLoad.info("Displayed Result is "+fetchOutput);
+        assertEquals(fetchOutput,ExpectedResult,"Expected and actual result  matches");
+	}
+	
+
+	
+	@When("User enters invalid Python code from sheet {string} and {int}")
+    public void user_enters_invalid_python_code_from_sheet_and(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException, InterruptedException {
+
+        LoggerLoad.info("User is on Try Editor page");
+        ExcelReader reader = new ExcelReader();
+
+        List<Map<String, String>> testdata = reader.getData(Excelpath, SheetName);
+        PythonCode = testdata.get(RowNumber).get("PythonCode");
+        ExpectedResult=testdata.get(RowNumber).get("Output");
+        LoggerLoad.info("Expected Result is "+ExpectedResult);
+
+        LoggerLoad.info("User enters PythonCode as \" " + PythonCode);
+        if ( PythonCode!= null )
+        	arraypagefactory.fetchPythonCode(PythonCode);
+
+    }
+
+	
+	@Then("User should be able to see error message")
+    public void user_should_be_able_to_see_error_message() {
+
+        LoggerLoad.info("User gets the error message in an Alert");
+        String actualError = arraypagefactory.fetchErrorMessage();
+        String ExpectedError="NameError: name 'hello' is not defined on line 1";
+        LoggerLoad.info("Displayed Error Message  is "+actualError);
+        assertEquals(actualError,ExpectedError,"Invalid Syntax error message");
+        
+
+    }
+	
+	@Given("User is on {string} page of {string} after logged in")
+    public void user_is_on_page_of_after_logged_in(String pageName1, String pageName2)
+    {
+        LoggerLoad.info("User is  on " +pageName1 + "  page of "+pageName2 + "after logged in ");
+        String pagename=pageName1+pageName2.replaceAll("\\s+", "");
+        arraypagefactory.navigateTo(pagename);
+
+    }
+	
+
+	
+	@When("User enters valid Python code from sheet {string} and {int} for the PracticeQuestions")
+    public void user_enters_valid_python_code_from_sheet_and_for_the_practice_questions(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException
+    {
+        LoggerLoad.info("User enters valid Python Code from Sheet Name  "+sheetName);
+        LoggerLoad.info("User enters valid Python Code from Row Number "+rowNumber);
+        arraypagefactory.enterPracticeQuestions(sheetName,rowNumber);
+        ExpectedMsg=arraypagefactory.getExpectedResult(sheetName, rowNumber);
+    }
+
+	
+	
+	@Then("User should be able to see the Result")
+    public void user_should_be_able_to_see_the_result() {
+
+        LoggerLoad.info("User gets the Result of entered Python Code");
+        String actualResult = arraypagefactory.getActualResult();
+        LoggerLoad.info("Displayed Result is "+actualResult);
+        assertEquals(actualResult,ExpectedMsg,"Output is displayed");
+    }
+
 
 
 
