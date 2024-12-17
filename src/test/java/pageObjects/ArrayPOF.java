@@ -1,5 +1,8 @@
 package pageObjects;
 
+import java.io.IOException;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,12 +10,17 @@ import org.openqa.selenium.support.PageFactory;
 
 import webDriverManager.DriverFactory;
 import org.testng.Assert;
+
+import utilities.ConfigReader;
 import utilities.LoggerLoad;
+import utilities.Utility_Methods;
 
 
 public class ArrayPOF {
 	
 	public static WebDriver driver = DriverFactory.getDriver();
+	Utility_Methods util=new Utility_Methods();
+	String treeUrl = ConfigReader.getloginUrl("TryEditorPageUrl");
 	
 	@FindBy(xpath = "//div[@id='navbarCollapse']//a[contains(text(), 'Data Structures')]")
     private WebElement dropdownoption;
@@ -24,13 +32,6 @@ public class ArrayPOF {
     private WebElement arrayGetStarted;
 	@FindBy(xpath="//a[@href='arrays-in-python']")
     private WebElement arraysInPython;
-	
-	
-	
-	@FindBy(xpath="///*[@id='answer_form']/button")
-    private WebElement runButton;
-	
-	
 	
 	
 	@FindBy(xpath="//a[@href='/tryEditor']")
@@ -60,6 +61,18 @@ public class ArrayPOF {
 	
 	@FindBy(xpath="//a[@href='basic-operations-in-lists']")
     private WebElement basicOperationList;
+	
+	@FindBy (xpath="//form/div/div/div/textarea")
+	private WebElement editorInput;
+	
+	@FindBy (id="answer_form")
+	private WebElement answerform;
+	
+	@FindBy (xpath="//button[text()='Run']") 
+	private WebElement runButton;
+	
+	@FindBy (xpath="//pre[@id='output']") 
+	private WebElement output;
 	
 	public ArrayPOF() {
 		
@@ -140,6 +153,61 @@ public class ArrayPOF {
 		LoggerLoad.info("click " + basicOperationList.getText() + " On array page");
 		basicOperationList.click();
 		}
+	
+	public void  navigateTo(String pagename)
+    {
+        
+        util.driver.get(treeUrl);
+    }
+	
+	public void fetchPythonCode(String PythonCode) {
+        System.out.println("Editor Input: "+editorInput);
+        util.waitForElement(answerform);
+        answerform.click();
+        editorInput.sendKeys(PythonCode);
+    }
+	public void clickRunButton() {
+		LoggerLoad.info("Click on the run button");
+		runButton.click();
+		}
+	
+	public String fetchOutput()
+    {
+        util.waitForElement(output);
+        LoggerLoad.info("Click on the OK button for the error pop up ");
+        String Result = output.getText();
+        return Result;
+        
+    }
+	
+	public String fetchErrorMessage()
+    {
+		LoggerLoad.info("Get the error message pop up for the invalid python code ");
+        String errorMessage=util.driver.switchTo().alert().getText();
+        LoggerLoad.info("Click on the OK button for the error pop up ");
+        util.driver.switchTo().alert().accept();
+        return errorMessage;
+    }
+	
+	public void enterPracticeQuestions(String sheetname, int rownumber) throws InvalidFormatException, IOException
+    {
+        util.waitForElement(answerform);
+        answerform.click();
+        String code=util.getCodefromExcel(sheetname, rownumber);
+        util.enterPythonCodeForPractice(code, editorInput);
+
+    }
+	
+	public String getExpectedResult(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException
+    {
+        String expectedResult=util.getResultfromExcel(sheetName, rowNumber);
+        return expectedResult;
+    }
+	
+	public String getActualResult()
+    {
+        return output.getText();
+    }
 	
 	
 	

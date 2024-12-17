@@ -36,7 +36,6 @@ Feature: User is in DS-ALGO application page and test the Array page
     When The user clicks Practice Questions button
     Then The user should be redirected to "Practice Questions" page
 
-  #
   @TestScenario06_array
   Scenario: Verify that user is able to navigate to "Search the array" Page from Practice question page of "Arrays in Python" page
     Given The user is on the "Arrays in Python" page
@@ -120,25 +119,36 @@ Feature: User is in DS-ALGO application page and test the Array page
     #Given The user is in the tryEditor page
     #When The user clicks the Run Button without entering the code in the Editor
     #Then The user should able to see an error message in alert window
-#
-  #@TestScenario20_arraynottttt
-  #Scenario Outline: The user is able to submit code in tryEditor for Search the array link
-    #Given The user is on "Question" page of "Search the array" after logged in
-    #When The user enter valid python code in tryEditor from sheet "<Sheetname>" and <RowNumber> for the question
-    #And The user clicks on Submit button
-    #Then The user should be presented with successful submission message
-#
-    #Examples: 
-      #| Sheetname  | RowNumber |
-      #| pythonCode |         1 |
 
-  #@TestScenario21_arraynottttt
-  #Scenario Outline: The user is presented with error message for code with invalid syntax in tryEditor for Search the array link
-    #Given The user is on "Question" page of "Search the array" after logged in
-    #When The user enter python code with invalid syntax in tryEditor from sheet "<Sheetname>" and <RowNumber>
-    #And The user clicks on run button
-    #Then The user should be presented with error message as "SyntaxError: bad input on line 1"
-#
-    #Examples: 
-      #| Sheetname  | RowNumber |
-      #| pythonCode |         2 |
+  @TestScenario20_array
+  Scenario Outline: Validation of valid python code in TryEditor page
+    Given User is on "Try Editor Page" after logged in
+    When User enters valid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on Run button
+    Then User should be able to see the output
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         0 |
+
+  @TestScenario21_array
+  Scenario Outline: Validation of error message for invalid python code in TryEditor page
+    Given User is on "Try Editor Page" after logged in
+    When User enters invalid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on Run button
+    Then User should be able to see error message
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         1 |
+
+  @TestScenario22_array
+  Scenario Outline: Validation of valid python code in Practice Questions page for Search for Array link
+    Given User is on "Question" page of "Search the array" after logged in
+    When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+    And User clicks on Run button
+    Then User should be able to see the Result
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         2 |
