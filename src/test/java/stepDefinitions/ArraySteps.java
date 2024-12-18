@@ -38,7 +38,12 @@ public class ArraySteps {
 
 	@Then("The user lands in the arrays Datastructure page with title {string}")
 	public void the_user_lands_in_the_arrays_datastructure_page_with_title(String expectedArrayPageTitle) {
-		 arraypagefactory.getpageTitle(expectedArrayPageTitle);
+		LoggerLoad.info("The user succesfully clicked on the Array option for data structures dropdown");
+		
+        String actualTitle =arraypagefactory.getpageTitle();
+        LoggerLoad.info("Page Title is " +actualTitle);
+        
+        assertEquals(actualTitle,expectedArrayPageTitle,"User is redirected to another page");
 		LoggerLoad.info("The user succesfully clicked on the Array option for data structures dropdown");
 	}
 	
@@ -55,7 +60,9 @@ public class ArraySteps {
 
 	@Then("The user should be redirected to {string} page")
 	public void the_user_should_be_redirected_to_page(String expectedArrayPageTitle) {
-		arraypagefactory.getpageTitle(expectedArrayPageTitle);
+		String actualTitle =arraypagefactory.getpageTitle();
+        LoggerLoad.info("Page Title is " +actualTitle);
+        assertEquals(actualTitle,expectedArrayPageTitle,"User is redirected to another page");
 	}
 	
 
@@ -73,7 +80,10 @@ public class ArraySteps {
 
 	@Then("The user should be redirected to a page having an try Editor with a Run button to test and page title {string}")
 	public void the_user_should_be_redirected_to_a_page_having_an_try_editor_with_a_run_button_to_test_and_page_title(String expectedAssesmentPageTitle) {
-		arraypagefactory.getpageTitle(expectedAssesmentPageTitle);
+		String actualTitle =arraypagefactory.getpageTitle();
+        LoggerLoad.info("Page Title is " +actualTitle);
+        
+        assertEquals(actualTitle,expectedAssesmentPageTitle,"User is redirected to another page");
 	}
 	
 
@@ -91,7 +101,10 @@ public class ArraySteps {
 
 	@Then("The user should be redirected to {string} page contains a question,and try Editor with Run and Submit buttons and page title {string}")
 	public void the_user_should_be_redirected_to_page_contains_a_question_and_try_editor_with_run_and_submit_buttons_and_page_title(String string, String expectedAssesmentPageTitle) {
-		arraypagefactory.getpageTitle(expectedAssesmentPageTitle);
+		String actualTitle =arraypagefactory.getpageTitle();
+        LoggerLoad.info("Page Title is " +actualTitle);
+        
+        assertEquals(actualTitle,expectedAssesmentPageTitle,"User is redirected to another page");
 	}
 	
 	
@@ -252,7 +265,53 @@ public class ArraySteps {
         assertEquals(actualResult,ExpectedMsg,"Output is displayed");
     }
 
+	@When("User clicks on Submit button")
+    public void user_clicks_on_submit_button()
+    {
+        LoggerLoad.info("User clicks on Submit button");
+        arraypagefactory.clickSubmitButton();
+    }
+	
+	@Then("User should get success submission message  from sheet {string} and {int}")
+	public void user_should_get_success_submission_message_from_sheet_and(String sheetName, Integer rowNumber) throws InvalidFormatException, IOException
+    {
+        LoggerLoad.info("User gets Success submission message");
+        String actualMessage=arraypagefactory.getActualResult();
+        System.out.println("the actual message is ");
+        System.out.println(actualMessage);
+        ExpectedMsg=arraypagefactory.getExpectedResult(sheetName, rowNumber);
+        assertEquals(actualMessage,ExpectedMsg,"User gets submission message");
+    }
+	
+	@When("User clicks on Find Numbers with Even Number of Digits link")
+    public void user_clicks_on_find_numbers_with_even_number_of_digits_link()
+    {
+        LoggerLoad.info("User clicks on Find Numbers with Even Number of Digits link");
+        arraypagefactory.clickFindNumbersWithEvenNumberOfDigitsLink();
 
+    }
+	
+	
+	
+	@Then("User should be redirected to Questions page contains a tryEditor with Run and Submit buttons")
+    public void user_should_be_redirected_to_questions_page_contains_a_try_editor_with_run_and_submit_buttons() {
+
+        LoggerLoad.info("User is redirected to Questions page having a Try Editor with Run button and Submit buttons");
+        String expectedTitle="Assessment";
+        String actualTitle =arraypagefactory.getpageTitle();
+        LoggerLoad.info("Page Title is " +actualTitle);
+        
+        assertEquals(actualTitle,expectedTitle,"User is redirected to another page");
+
+    }
+	
+///// @TestScenario29_array
+	@When("User clicks on Squares of a Sorted Array link")
+    public void user_clicks_on_squares_of_a_sorted_array_link() {
+        LoggerLoad.info("User clicks on Squares of a Sorted Array link");
+        arraypagefactory.clickSquaresOfASortedArrayLink();
+
+    }
 
 
 
