@@ -83,14 +83,24 @@ public class ConfigReader {
         else
             throw new RuntimeException("Excel file path not specified in the Configuration.properties file.");
     }
+	public static String geturl(String pagename) {
+		
+        String url = properties.getProperty(pagename);
+        System.out.println(url);
+        if (url != null)
+            return url;
+        else
+            throw new RuntimeException(pagename + " url not specified in the Configuration.properties file.");
+    }
 	
+//	public static void main(String[] args) {
+//	ConfigReader config = new ConfigReader();
+//	String key = "browser";	
+//	config.getApplicationUrl(key);		
+//}
 }
 
-//	public static void main(String[] args) {
-//		ConfigReader config = new ConfigReader();
-//		String key = "browser";	
-//		config.getApplicationUrl(key);		
-//	}
+
 
 
 

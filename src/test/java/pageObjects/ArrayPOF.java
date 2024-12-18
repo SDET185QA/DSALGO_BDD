@@ -20,7 +20,7 @@ public class ArrayPOF {
 	
 	public static WebDriver driver = DriverFactory.getDriver();
 	Utility_Methods util=new Utility_Methods();
-	String treeUrl = ConfigReader.getloginUrl("TryEditorPageUrl");
+	
 	
 	@FindBy(xpath = "//div[@id='navbarCollapse']//a[contains(text(), 'Data Structures')]")
     private WebElement dropdownoption;
@@ -73,6 +73,9 @@ public class ArrayPOF {
 	
 	@FindBy (xpath="//pre[@id='output']") 
 	private WebElement output;
+	
+	@FindBy (xpath="//input[@value='Submit']") 
+	private WebElement submitButton;
 	
 	public ArrayPOF() {
 		
@@ -157,7 +160,10 @@ public class ArrayPOF {
 	public void  navigateTo(String pagename)
     {
         
-        util.driver.get(treeUrl);
+		 String treeUrlName= ConfigReader.geturl(pagename);
+	        LoggerLoad.info(treeUrlName);
+	        LoggerLoad.info("INSIDE POF TREEURL");
+	        util.driver.get(treeUrlName);
     }
 	
 	public void fetchPythonCode(String PythonCode) {
@@ -206,7 +212,12 @@ public class ArrayPOF {
 	
 	public String getActualResult()
     {
+		util.waitForElement(output);
         return output.getText();
+    }
+	public void clickSubmitButton()
+    {
+        submitButton.click();
     }
 	
 	
