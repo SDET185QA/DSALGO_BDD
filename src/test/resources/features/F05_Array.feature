@@ -163,3 +163,79 @@ Feature: User is in DS-ALGO application page and test the Array page
 		Examples:
 			| SheetName  | RowNumber |
 			| PythonCode | 3         |
+			
+	 @TestScenario24_array
+	Scenario Outline: Validation of valid python code in Practice Questions page for Max Consecutive Ones link
+		Given User is on "Question" page of "Max Consecutive Ones" after logged in
+		When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+		And User clicks on Run button
+		Then User should be able to see the Result
+		Examples:
+			| SheetName  | RowNumber |
+			| PythonCode | 4         |
+			
+			
+	@TestScenario25_array
+	Scenario Outline: Validation of Submit button in Practice Questions page for Max Consecutive Ones link
+		Given User is on "Question" page of "Max Consecutive Ones" after logged in
+		When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+		And User clicks on Submit button
+		Then User should get success submission message  from sheet "<SheetName>" and <RowNumber>
+		Examples:
+			| SheetName  | RowNumber |
+			| PythonCode | 5         |
+			
+	@TestScenario26_array		
+	Scenario: Validation of Find Numbers with Even Number of Digits link
+		Given User is on "Practice page" after logged in
+		When User clicks on Find Numbers with Even Number of Digits link
+		Then User should be redirected to Questions page contains a tryEditor with Run and Submit buttons
+
+@TestScenario27_array
+Scenario Outline: Validation of valid python code in Practice Questions page for Find Numbers with Even Numbers of Digits link
+		Given User is on "Question" page of "FindNumberswithEvenNumberofDigits" after logged in
+		When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+		And User clicks on Run button
+		Then User should be able to see the Result
+		Examples:
+			| SheetName  | RowNumber |
+			| PythonCode | 6         |
+			
+@TestScenario28_array			
+Scenario Outline: Validation of Submit button in Practice Questions page for Find Numbers with Even Numbers of Digits link
+		Given User is on "Question" page of "FindNumberswithEvenNumberofDigits" after logged in
+		When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+		And User clicks on Submit button
+		Then  User should get success submission message  from sheet "<SheetName>" and <RowNumber>
+		Examples:
+			| SheetName  | RowNumber |
+			| PythonCode | 7         |
+    
+    
+    @TestScenario29_array
+    Scenario: Validation of Squares of a Sorted Array link
+		Given User is on "Practice page" after logged in
+		When User clicks on Squares of a Sorted Array link
+		Then User should be redirected to Questions page contains a tryEditor with Run and Submit buttons
+
+
+@TestScenario30_array
+	Scenario Outline: Validation of valid python code in Practice Questions page for Find Numbers with Even Numbers of Digits link
+		Given User is on "Question" page of "Squares of a Sorted Array" after logged in
+		When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+		And User clicks on Run button
+		Then User should be able to see the Result
+		Examples:
+			| SheetName  | RowNumber |
+			| PythonCode | 8         |
+			
+			
+			@TestScenario31_array
+			Scenario Outline: Validation of Submit button in Practice Questions page for Find Numbers with Even Numbers of Digits link
+		Given User is on "Question" page of "Squares of a Sorted Array" after logged in
+		When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+		And User clicks on Submit button
+		Then User should get success submission message  from sheet "<SheetName>" and <RowNumber>
+		Examples:
+			| SheetName  | RowNumber |
+			| PythonCode | 9         |

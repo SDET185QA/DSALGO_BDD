@@ -77,6 +77,12 @@ public class ArrayPOF {
 	@FindBy (xpath="//input[@value='Submit']") 
 	private WebElement submitButton;
 	
+	@FindBy (xpath="//a[text()='Find Numbers with Even Number of Digits']") 
+	private WebElement findNumbersWithEvenNumberOfDigitsLink;
+	
+	@FindBy (xpath="//a[text()='Squares of  a Sorted Array']") 
+	private WebElement squaresOfASortedArrayLink;
+	
 	public ArrayPOF() {
 		
 		// Use the PageFactory.initElements method to initialize the elements on the array page
@@ -93,10 +99,11 @@ public class ArrayPOF {
 		
 		arraydropdown.click();
 	}
-	public void getpageTitle(String expectedPageTitle) {
+	public String getpageTitle() {
 		String actualPageTitle = driver.getTitle();
 		LoggerLoad.info("The tile of array page is "+ actualPageTitle);
-		Assert.assertEquals(expectedPageTitle, actualPageTitle);
+		//Assert.assertEquals(expectedPageTitle, actualPageTitle);
+		return actualPageTitle;
 		}
 	public void clickOnarraysInPython() {
 		LoggerLoad.info("click " + arraysInPython.getText() + " On array page");
@@ -218,6 +225,16 @@ public class ArrayPOF {
 	public void clickSubmitButton()
     {
         submitButton.click();
+    }
+	
+	public void clickFindNumbersWithEvenNumberOfDigitsLink()
+    {
+        findNumbersWithEvenNumberOfDigitsLink.click();
+    }
+	
+	public void clickSquaresOfASortedArrayLink()
+    {
+        squaresOfASortedArrayLink.click();
     }
 	
 	
