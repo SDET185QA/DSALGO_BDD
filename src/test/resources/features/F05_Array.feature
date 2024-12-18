@@ -152,3 +152,14 @@ Feature: User is in DS-ALGO application page and test the Array page
     Examples: 
       | SheetName  | RowNumber |
       | PythonCode |         2 |
+      
+      
+ @TestScenario23_array 
+  Scenario Outline: Validation of Submit button in Practice Questions page for Search for Array link
+		Given User is on "Question" page of "Search the array" after logged in
+		When User enters valid Python code from sheet "<SheetName>" and <RowNumber> for the PracticeQuestions
+		And User clicks on Submit button
+		Then User should get success submission message  from sheet "<SheetName>" and <RowNumber>
+		Examples:
+			| SheetName  | RowNumber |
+			| PythonCode | 3         |
