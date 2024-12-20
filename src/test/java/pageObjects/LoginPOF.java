@@ -3,7 +3,6 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -91,26 +90,25 @@ public void loginpage() {
 			
 					
 				}
-	public void validate_login_with_blank_credentials(String validationMessage,String field) {
+public String validate_login_with_blank_credentials(String validationMessage,String field) {
 			
 			LoggerLoad.info("Expected error message is   "+ validationMessage );
-			
+			String message1 = null;
 			if (field.equalsIgnoreCase("username")) {
 			@SuppressWarnings("deprecation")
 			String message = usernameField.getAttribute("validationMessage");
-			LoggerLoad.info("Actual error message for blank username is   "+ message );
-			LoggerLoad.info("Validating the error message" );
-			Assert.assertEquals(validationMessage, message);
+			message1 =message;	
+
 			} else if (field.equalsIgnoreCase("password")) {
 				@SuppressWarnings("deprecation")
 				String message = passwordField.getAttribute("validationMessage");
-				LoggerLoad.info("Actual error message for blank password is   "+ message );
-				LoggerLoad.info("Validating the error message" );
-				Assert.assertEquals(validationMessage, message);
-			}		
+				message1 =message;		
+			}
 			
-			
+			return message1;
+					
 		}
+		
 	
 	public void enter_user_name(String username) {
 		LoggerLoad.info("Clearing the username fields");
@@ -119,16 +117,16 @@ public void loginpage() {
 		usernameField.sendKeys(username);	
 	}
 	
-	public void getTitleHomePage(String expectedTitle) {
+	public String getTitleHomePage(String expectedTitle) {
 		String actualTitle = driver.getTitle();
-		System.out.println(actualTitle);
-		Assert.assertEquals(actualTitle, expectedTitle);
+		LoggerLoad.info(actualTitle);
+		return actualTitle;
 	}
 	
-	public void getlogoutAlert(String expectedLogoutMessage) {
+	public String getlogoutAlert(String expectedLogoutMessage) {
 		String logoutMessage = logoutalert.getText();
-		System.out.println(logoutMessage);
-		Assert.assertEquals(expectedLogoutMessage, logoutMessage);
+		LoggerLoad.info(logoutMessage);
+		return logoutMessage;
 	}
 	public void homepage() {
 		

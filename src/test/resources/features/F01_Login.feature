@@ -86,8 +86,32 @@ Feature: Login to DS-ALGO Application and validate login page with different sce
     #When The user clicks on signout button
     #Then Verify the logout message "Logged out successfully"
 
-  @TestScenario_login_14
+  @TestScenario_login_14 
+    Scenario Outline: User on login page and login with invalid inputs "<username>" and "<password>"
+    Given The user is on the DS Algo Login Page
+    When The user enter invalid "<username>" and "<password>"
+    Then click login button to verify "Please fill out this field."
+
+    Examples: 
+      | username | password |
+      | user     |          |
+      
+  @TestScenario_login_15
+     Scenario Outline: User on login page and login with invalid and valid inputs from Excel "<Sheetname>" and <RowNumber>
+    Given The user is on the DS Algo Login Page
+    When The user enter sheet "<Sheetname>" and <RowNumber>
+    Then click login button
+
+    Examples: 
+      | Sheetname | RowNumber |
+      | SignIn    |         0 |
+      | SignIn    |         1 |
+
+  @TestScenario_login_16
   Scenario: Verify signout from DS-Algo page
     Given The user is in home page and enters  email as "SDET185" and password as "@SDET!*%"
     When The user clicks on signout button
     Then Verify the logout message "Logged out successfully"
+    
+
+      
