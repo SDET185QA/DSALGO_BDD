@@ -61,32 +61,6 @@ Examples:
 	Given The user is on the Linked list page 
 	When The user clicks on Creating Linked list link
 	Then The user should be able to view all details pertaining to Creating linked list
-	
-#@Tag9
-#	Scenario: Verify the user is able to view the try editior page
-#	Given The user is on the Creating Linked List page
-#	When The user clicks on try here link
-#	Then The user should land on try editor page
-	
-@Tag10
-	Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
-	Given The user is on Try Editor page
-	When The user enters "<code>" in try editor
-	And The user click on Run button
-	Then The user should be able to view the result in console window
-	Examples:
-	|code|
-	|print ('Hello')|
-	
-@Tag11
-	Scenario Outline: Verify If User is able to execute the invalid python code in Try Editor
-	Given The user is on Try Editor page
-	When  The user enters "<code>" in try editor 
-	And The user click on Run button
-	Then The user should get error message in a pop up window
-Examples:
-|code|
-|print (Welcome')|
 
 @Tag12
 	Scenario: Verify the user is able to view the Types of Linked list page
@@ -94,128 +68,23 @@ Examples:
 	When The user clicks on Types of Linked list link
 	Then The user should be able to view all details pertaining to Types of linked list
 	
-#@Tag13
-#	Scenario: Verify the user is able to view the try editior page
-#	Given The user is on the Types of Linked list page
-#	When The user clicks on try here link
-#	Then The user should land on try editor page
-	
-@Tag14
-	Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
-	Given The user is on Try Editor page
-	When The user enters "<code>" in try editor
-	And The user click on Run button
-	Then The user should be able to view the result in console window
-	Examples:
-	|code|
-	|print ('Hello')|
-	
-@Tag15
-	Scenario Outline: Verify If User is able to execute the invalid python code in Try editor
-	Given The user is on Try Editor page
-	When  The user enters "<code>" in try editor 
-	And The user click on Run button
-	Then The user should get error message in a pop up window
-	Examples:
-	|code|
-	|print ('Hi)|	
-	
 @Tag16
 	Scenario: Verify the user is able to view the Implement Linked list in python page
 	Given The user is on the Linked list page 
 	When The user clicks on Implement Linked list in python page link
 	Then The user should be able to view all details pertaining to Implement linked list in python page
 
-@Tag17
-	Scenario: Verify the user is able to view the try editior page
-	Given The user is on the Implement Linked List in python page
-	When The user clicks on try here link
-	Then The user should land on try editor page
-	
-@Tag18
-	Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
-	Given The user is on Try Editor page
-	When The user enters "<code>" in try editor
-  And The user click on Run button
-	Then The user should be able to view the result in console window
-	Examples:
-	|code|
-  |print ('Hello')|
-	
-@Tag19
-	Scenario Outline: Verify If User is able to execute the invalid python code in Try editor
-	Given The user is on Try Editor page
-	When  The user enters "<code>" in try editor 
-	And The user click on Run button
-	Then The user should get error message in a pop up window
-	Examples:
-	|code|
-	|print ('Hi)|	
-		
 	@Tag20
 		Scenario: Verify the user is able to view the Traversal page
 		Given The user is on the Linked list page 
 		When The user clicks on Traversal page link
 		Then The user should be able to view all details pertaining to Traversal page
-		
-	@Tag21
-		Scenario: Verify the user is able to view the try editior page
-		Given The user is on the Traversal list page 
-		When The user clicks on try here link        
-		Then The user should land on try editor page
-		
-	@Tag22
-		Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
-		Given The user is on Try Editor page
-		When The user enters "<code>" in try editor
-		And The user click on Run button
-  	Then The user should be able to view the result in console window
 
-	Examples:
-	|code|
-	|print ('Hello')|
-		
-	@Tag23
-		Scenario Outline: Verify If User is able to execute the invalid python code in Try Editor
-		Given The user is on Try Editor page
-		When  The user enters "<code>" in try editor 
-		And The user click on Run button
-		Then The user should get error message in a pop up window
-		Examples:
-		|code|
-		|print ('Hi)|		
 	@Tag24
 	Scenario: Verify the user is able to view the Insertion page
 	Given The user is on the Linked list page 
 	When The user clicks on Insertion page link
 	Then The user should be able to view all details pertaining to Insertion page
-	
-#	@Tag25
-#	Scenario: Verify the user is able to view the try editior page
-#	Given The user is on the Insertion page 
-#	When The user clicks on try here link        
-#	Then The user should land on try editor page
-	
-	@Tag26
- 	Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
-	Given The user is on Try Editor page
-	When The user enters "<code>" in try editor
-	And The user click on Run button
-  Then The user should be able to view the result in console window
-
-Examples:
-|code|
-|print ('Hello')|
-	
- 	@Tag27
- 	Scenario Outline: Verify If User is able to execute the invalid python code in Try Editor
-	Given The user is on Try Editor page
-	When  The user enters "<code>" in try editor 
-	And The user click on Run button
-	Then The user should get error message in a pop up window
-	Examples:
-	|code|
-	|print ('Hi)|	
 	
  	@Tag28
  	Scenario: Verify the user is able to view the Deletion page
@@ -223,34 +92,7 @@ Examples:
  	When The user clicks on Deletion link
  	Then The user should be able to view all details pertaining to Deletion page
  	
- #	@Tag29
- #	Scenario: Verify the user is able to view the try editior page
- #	Given The user is on the Insertion page 
- #	When The user clicks on try here link        
- #	Then The user should land on try editor page
- 	
- 	@Tag30
-Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
-	Given The user is on Try Editor page
-	When The user enters "<code>" in try editor
-	And The user click on Run button
-  Then The user should be able to view the result in console window
-
-Examples:
-|code|
-|print ('Hello')|
- 	
-  @Tag31
-  	Scenario Outline: Verify If User is able to execute the invalid python code in Try Editor
-	Given The user is on Try Editor page
-	When  The user enters "<code>" in try editor 
-	And The user click on Run button
-	Then The user should get error message in a pop up window
-	Examples:
-	|code|
-	|print ('Hi)|	
-
-    #Bug#
+  #Bug#
  
   @Tag32 
   Scenario: Verify the user is able to view the Practice questions page
