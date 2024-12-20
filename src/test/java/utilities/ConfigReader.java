@@ -93,8 +93,9 @@ public class ConfigReader {
 		else
 			throw new RuntimeException("linkedListIntroPageUrl not specified in the Configuration.properties file.");
 	}
+	
 	public static String getTryEditorPageUrl() {
-		String tryEditorPageUrl = properties.getProperty("tryEditorPageUrl");
+		String tryEditorPageUrl = properties.getProperty("TryEditorPage");
 		System.out.println(tryEditorPageUrl);
 		if (tryEditorPageUrl != null)
 			return tryEditorPageUrl;
@@ -102,15 +103,26 @@ public class ConfigReader {
 			throw new RuntimeException("tryEditorPageUrl not specified in the Configuration.properties file.");
 	}
 	
-	
+	public static String getexcelfilepath() {
+        String excelfilelpath = properties.getProperty("excelFilePath");
+        if (excelfilelpath != null)
+            return excelfilelpath;
+        else
+            throw new RuntimeException("Excel file path not specified in the Configuration.properties file.");
+    }
+	public static String geturl(String pagename) {
+		
+        String url = properties.getProperty(pagename);
+        System.out.println(url);
+        if (url != null)
+            return url;
+        else
+            throw new RuntimeException(pagename + " url not specified in the Configuration.properties file.");
+    }
 	
 }
 
-//	public static void main(String[] args) {
-//		ConfigReader config = new ConfigReader();
-//		String key = "url";	
-//		config.getApplicationUrl(key);		
-//	}
+
 
 
 
