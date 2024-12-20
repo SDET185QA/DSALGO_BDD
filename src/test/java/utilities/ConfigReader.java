@@ -76,6 +76,34 @@ public class ConfigReader {
 			throw new RuntimeException("browser not specified in the Configuration.properties file.");
 	}
 	
+	public static String getLinkedListUrl() {
+		String linkedListPageUrl = properties.getProperty("linkedListPageUrl");
+		System.out.println(linkedListPageUrl);
+		if (linkedListPageUrl != null)
+			return linkedListPageUrl;
+		else
+			throw new RuntimeException("linkedListPageUrl not specified in the Configuration.properties file.");
+	}
+
+	public static String getLinkedListIntroUrl() {
+		String linkedListIntroPageUrl = properties.getProperty("linkedListIntroPageUrl");
+		System.out.println(linkedListIntroPageUrl);
+		if (linkedListIntroPageUrl != null)
+			return linkedListIntroPageUrl;
+		else
+			throw new RuntimeException("linkedListIntroPageUrl not specified in the Configuration.properties file.");
+	}
+	public static String getTryEditorPageUrl() {
+		String tryEditorPageUrl = properties.getProperty("tryEditorPageUrl");
+		System.out.println(tryEditorPageUrl);
+		if (tryEditorPageUrl != null)
+			return tryEditorPageUrl;
+		else
+			throw new RuntimeException("tryEditorPageUrl not specified in the Configuration.properties file.");
+	}
+	
+	
+	
 }
 
 //	public static void main(String[] args) {
