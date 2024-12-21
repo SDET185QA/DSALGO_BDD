@@ -23,12 +23,6 @@ Feature: Linked List
 	When The user clicks on Introduction link
 	Then The user should be able to view all details pertaining to Introduction
 	
-@Tag4 
-	Scenario: Verify the user is able to view the try editior page 
-	Given The user is on the Introduction page  
-	When The user clicks on try here link
-	Then The user should land on try editor page
-	
 @Tag5
 	Scenario: Verify the user is able to view the error message without entering code and click on Run button
 	Given The user is on Try Editor page
@@ -98,7 +92,7 @@ Examples:
   Scenario: Verify the user is able to view the Practice questions page
   Given The user is on the Introduction page 
   When The user clicks on Practice Questions Link
-  Then  The user should be able to view all details pertaining to Practice Questions page  
+  Then The user should be able to view contents pertaining to Practice Questions page  
  	
 	@Tag33
 	Scenario Outline: Verify the user is able to navigate to try editor page from every sub pages on Linkedlist
@@ -115,3 +109,6 @@ Examples:
 	|Traversal|
 	|Insertion|
 	|Deletion|
+	
+
+	

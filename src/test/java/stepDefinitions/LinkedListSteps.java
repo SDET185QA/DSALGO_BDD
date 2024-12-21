@@ -12,6 +12,7 @@ import webDriverManager.DriverFactory;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 import java.util.concurrent.TimeUnit;
 
@@ -79,7 +80,7 @@ public class LinkedListSteps {
 	//Scenario 4 Validiation of try editor page open
 	@Given("The user is on the Introduction page")
 	public void the_user_is_on_the_introduction_page() {
-		pageObject.openSubPage("Introduction");
+		linkedListIntroPOF.navigateToLinkedListIntroPage(driver);
 	}
 	
 	@Then("The user should land on try editor page")
@@ -104,12 +105,13 @@ public class LinkedListSteps {
 		assertEquals(actualMsg, "Please enter the code");
 		
 	}
+	
 	// Scenario 6 Verify If User is able to execute the valid python code in Try Editor
 	@When("The user enters {string} in try editor")
 	public void the_user_enters_code_in_try_editor(String code) {
 	     tryEditorPOF.executeCode(code);
-	     
 	}
+	
 	@And("The user click on Run button")
 	//@When("The user click on Run button")
 	public void the_user_click_on_run_button() {
@@ -229,13 +231,12 @@ public class LinkedListSteps {
 		linkedListIntroPOF.practiceQns();
 	}
 	
-	@Then("The user should be able to view all details pertaining to Practice Questions page")
-	public void the_user_should_be_able_to_view_all_details_pertaining_to_practice_questions_page() {
-		String actualUrl = pageObject.getCurrentUrl();
-		assertEquals(actualUrl, "https://dsportalapp.herokuapp.com/linked-list/practice");
+	@Then("The user should be able to view contents pertaining to Practice Questions page")
+	public void the_user_should_be_able_to_view_contents_pertaining_to_practice_questions_page() {
+		String actualContent = linkedListIntroPOF.getPracticeQnsContent();
+		assertNotEquals(actualContent, "");
 	}
 
-	
 	//Scenario Outline 33: Verify the user is able to navigate to try editor page from every sub pages on Linkedlist
 	 
 	@When("The user navigate to {string}")

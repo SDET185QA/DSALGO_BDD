@@ -2,6 +2,7 @@ package pageObjects;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -36,8 +37,8 @@ public class LinkedListIntroPOF {
 		PageFactory.initElements(driver,this);
 	}
 	
-	public String getCurrentUrl() {
-		return driver.getCurrentUrl();
+	public String getPracticeQnsContent() {
+		return driver.findElement(By.xpath("//div[@id='content']")).getText().trim();
 	}
 
 }
