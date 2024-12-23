@@ -167,7 +167,7 @@ public class ArrayPOF {
     {
         
 		 String treeUrlName= ConfigReader.geturl(pagename);
-	        util.driver.get(treeUrlName);
+	        driver.get(treeUrlName);
     }
 	
 	public void fetchPythonCode(String PythonCode) {
@@ -193,9 +193,9 @@ public class ArrayPOF {
 	public String fetchErrorMessage()
     {
 		LoggerLoad.info("Get the error message pop up for the invalid python code ");
-        String errorMessage=util.driver.switchTo().alert().getText();
+        String errorMessage=driver.switchTo().alert().getText();
         LoggerLoad.info("Click on the OK button for the error pop up ");
-        util.driver.switchTo().alert().accept();
+        driver.switchTo().alert().accept();
         return errorMessage;
     }
 	
