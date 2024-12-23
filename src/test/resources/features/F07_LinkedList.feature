@@ -1,9 +1,9 @@
 @linkedlist
 Feature: Linked List
-    Background: The user is logged in DS Algo portal
-    Given The user is on DS-ALGO application sign in page
-    When The user enter valid credentials "SDET185" and password as "@SDET!*%"
-    Then The user should land in homepage
+ Background: The user is logged in DS Algo portal
+ Given The user is on DS-ALGO application sign in page
+ When The user enter valid credentials "SDET185" and password as "@SDET!*%"
+ Then The user should land in homepage
 
 #@Tag1
 #	Scenario: Verify the user is able to land in Linked List page
