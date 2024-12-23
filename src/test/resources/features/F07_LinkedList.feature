@@ -1,9 +1,9 @@
 @linkedlist
 Feature: Linked List
-    Background: The user is logged in DS Algo portal
-    Given The user is on DS-ALGO application sign in page
-    When The user enter valid credentials "SDET185" and password as "@SDET!*%"
-    Then The user should land in homepage
+ Background: The user is logged in DS Algo portal
+ Given The user is on DS-ALGO application sign in page
+ When The user enter valid credentials "SDET185" and password as "@SDET!*%"
+ Then The user should land in homepage
 
 #@Tag1
 #	Scenario: Verify the user is able to land in Linked List page
@@ -22,12 +22,6 @@ Feature: Linked List
 	Given The user is on the Linked list page 
 	When The user clicks on Introduction link
 	Then The user should be able to view all details pertaining to Introduction
-	
-@Tag4 
-	Scenario: Verify the user is able to view the try editior page 
-	Given The user is on the Introduction page  
-	When The user clicks on try here link
-	Then The user should land on try editor page
 	
 @Tag5
 	Scenario: Verify the user is able to view the error message without entering code and click on Run button
@@ -98,7 +92,7 @@ Examples:
   Scenario: Verify the user is able to view the Practice questions page
   Given The user is on the Introduction page 
   When The user clicks on Practice Questions Link
-  Then  The user should be able to view all details pertaining to Practice Questions page  
+  Then The user should be able to view contents pertaining to Practice Questions page  
  	
 	@Tag33
 	Scenario Outline: Verify the user is able to navigate to try editor page from every sub pages on Linkedlist
@@ -115,3 +109,6 @@ Examples:
 	|Traversal|
 	|Insertion|
 	|Deletion|
+	
+
+	

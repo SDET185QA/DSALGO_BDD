@@ -120,6 +120,15 @@ public class ConfigReader {
             throw new RuntimeException(pagename + " url not specified in the Configuration.properties file.");
     }
 	
+	public static String getStackPageUrl() {
+		String stackPageUrl = properties.getProperty("stackPageUrl");
+		System.out.println(stackPageUrl);
+		if (stackPageUrl != null)
+			return stackPageUrl;
+		else
+			throw new RuntimeException("getStackPageUrl not specified in the Configuration.properties file.");
+	}
+
 }
 
 

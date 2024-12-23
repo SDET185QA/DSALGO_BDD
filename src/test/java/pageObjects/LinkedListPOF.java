@@ -19,6 +19,7 @@ public class LinkedListPOF {
 	public static String linkedListPageUrl = ConfigReader.getLinkedListUrl();
 		
 	@FindBy (xpath = "//a[@href=\"introduction\"]")
+//	@FindBy(xpath="//a[@href=\"/linked-list/introduction/\"]")
 	WebElement introLink;  // Click on Intro link
 	
 	@FindBy (xpath = "//a[@href=\"creating-linked-list\"]")
@@ -38,6 +39,9 @@ public class LinkedListPOF {
 	
 	@FindBy (xpath = "//a[@href=\"deletion-in-linked-list\"]")
 	WebElement deletionInLinkedList;	//Click on deletion in Linked List
+	
+	@FindBy(xpath = "//a[@href=\"/linked-list/practice\"]")
+	WebElement practiceQns;		//Click on practice questions
 	
 //	@FindBy (xpath = "//form/button")
 //	WebElement runBtn; 		// Run button on try editor
@@ -82,6 +86,9 @@ public class LinkedListPOF {
 		deletionInLinkedList.click();
 	}
 	
+	public void practiceQns() {
+		practiceQns.click();
+	}
 	public String getCurrentUrl() {
 		String url = driver.getCurrentUrl();
 		return url;
