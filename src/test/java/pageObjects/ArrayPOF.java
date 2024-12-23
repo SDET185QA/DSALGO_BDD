@@ -18,7 +18,7 @@ import utilities.Utility_Methods;
 
 public class ArrayPOF {
 	
-	public static WebDriver driver = DriverFactory.getDriver();
+	WebDriver driver = DriverFactory.getDriver();
 	Utility_Methods util=new Utility_Methods();
 	
 	
@@ -102,7 +102,6 @@ public class ArrayPOF {
 	public String getpageTitle() {
 		String actualPageTitle = driver.getTitle();
 		LoggerLoad.info("The tile of array page is "+ actualPageTitle);
-		//Assert.assertEquals(expectedPageTitle, actualPageTitle);
 		return actualPageTitle;
 		}
 	public void clickOnarraysInPython() {
@@ -168,8 +167,6 @@ public class ArrayPOF {
     {
         
 		 String treeUrlName= ConfigReader.geturl(pagename);
-	        LoggerLoad.info(treeUrlName);
-	        LoggerLoad.info("INSIDE POF TREEURL");
 	        util.driver.get(treeUrlName);
     }
 	
