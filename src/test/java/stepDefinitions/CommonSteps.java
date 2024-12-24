@@ -13,11 +13,14 @@ public class CommonSteps {
 	@Given("The user is on DS-ALGO application sign in page")
 	public void the_user_is_on_ds_algo_application_sign_in_page() {
 		LoggerLoad.info("the user is in the home page");
-		loginpagefactory.loginpage();
+		
+		loginpagefactory.clickOnGetstarted();
+		//loginpagefactory.loginpage();
 	}
 
 	@When("The user enter valid credentials {string} and password as {string}")
-	public void the_user_enter_valid_credentials_and_password_as(String username, String password) {
+	public void the_user_enter_valid_credentials_and_password_as(String username, String password){
+		loginpagefactory.clickOnSignin();
 		loginpagefactory.enter_login_credentails(username,password);
 	}
 
