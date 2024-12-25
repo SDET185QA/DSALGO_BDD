@@ -19,15 +19,17 @@ public class Hooks {
 		
 		String browser = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");	
 		if (browser==null) {
-			LoggerLoad.info("Testing on chrome");
-			System.out.println(" about to open browser" + "chrome");
+			
 			driverfactory = new DriverFactory();
-			driver = driverfactory.webdriverinitialize("chrome");
+			browser =ConfigReader.getBrowserType();
+			LoggerLoad.info("Testing on browser declared in the config file which is "+browser);
+			driver = driverfactory.webdriverinitialize(browser);
 			driver.get(ConfigReader.getApplicationUrl("applicationurl"));
-			LoggerLoad.info("Initializing driver for : "+ "chrome");
+			LoggerLoad.info("Initializing driver for : "+ browser);
 		}
 		else {
 			driverfactory = new DriverFactory();
+			LoggerLoad.info("Testing on browser declared in the testng XML file which is "+browser);
 			driver = driverfactory.webdriverinitialize(browser);
 			driver.get(ConfigReader.getApplicationUrl("applicationurl"));
 			LoggerLoad.info("Initializing driver for : "+ browser);
