@@ -32,7 +32,7 @@ public class Hooks {
 			LoggerLoad.info("Testing on browser declared in the testng XML file which is "+browser);
 			driver = driverfactory.webdriverinitialize(browser);
 			driver.get(ConfigReader.getApplicationUrl("applicationurl"));
-			LoggerLoad.info("Initializing driver for : "+ browser);
+			LoggerLoad.info("Initializing driver for the browser : "+ browser);
 		}
 	
 	}
