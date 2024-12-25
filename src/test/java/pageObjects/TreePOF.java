@@ -143,7 +143,8 @@ public class TreePOF {
 		 String treeUrlName= ConfigReader.geturl(pagename);
 	        LoggerLoad.info(treeUrlName);
 	        LoggerLoad.info("INSIDE POF TREEURL");
-	        util.driver.get(treeUrlName);
+	        //util.driver.get(treeUrlName);  ///commeted to overcome the maven error
+	        driver.get(treeUrlName);
     }
 	public String fetchOutput()
     {
