@@ -17,7 +17,7 @@ import webDriverManager.DriverFactory;
 public class Utility_Methods {
 	
 	 //Utility for methods
-    public  WebDriver driver = DriverFactory.getDriver();
+    WebDriver driver = DriverFactory.getDriver();
     public  String ExcelPath = ConfigReader.getexcelfilepath();
     WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(20));
     public  void waitForElement(WebElement element) {

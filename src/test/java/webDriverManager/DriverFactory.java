@@ -1,41 +1,50 @@
 package webDriverManager;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import utilities.ConfigReader;
+import utilities.LoggerLoad;
 
 public class DriverFactory {
 	private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+	public static  ConfigReader configFileReader = new ConfigReader();
 
-	public static WebDriver webdriverinitialize(String browser) {
+	public  WebDriver webdriverinitialize(String browser) {
 		
-		//WebDriverManager is a utility class that manages the WebDriver binaries
-		//Use WebDriverManager to configure the ChromeDriver
-        // This will automatically download and configure the ChromeDriver binary
-		if (driver.get() == null) {
-		if (browser.equalsIgnoreCase("chrome")) {
-			WebDriverManager.chromedriver().setup();
-			 // Create a new instance of ChromeOptions
-	        // This allows us to configure the Chrome browser
-			ChromeOptions options = new ChromeOptions();
-			 // Add some options to the Chrome browser like maximize 
-			options.addArguments("--start-maximized");
-		
-			// Create a new instance of the ChromeDriver
-	        // We pass in the ChromeOptions instance to configure the browser
-			driver.set(new ChromeDriver(options));
-		}else {
-            throw new RuntimeException("Browser type not supported: " + browser);
+		if (browser.equalsIgnoreCase("firefox")) {
+			LoggerLoad.info("Testing on firefox");
+			
+			driver.set(new FirefoxDriver());
+			
+
+		} else if (browser.equalsIgnoreCase("chrome")) {
+			LoggerLoad.info("Testing on chrome");
+			
+			driver.set(new ChromeDriver());
+			
+		} else if (browser.equalsIgnoreCase("safari")) {
+			LoggerLoad.info("Testing on safari");
+			
+			driver.set(new SafariDriver());
+
+		} else if (browser.equalsIgnoreCase("edge")) {
+			LoggerLoad.info("Testing on Edge");
+			
+			driver.set(new EdgeDriver());
 		}
-		driver.get().manage().window().maximize();
-		}
-		else {
-            System.out.println("Driver is already initialized");
-        }
-	
 		
-		return driver.get();
+		getDriver().manage().deleteAllCookies();
+		getDriver().manage().window().maximize();
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		return getDriver();
 		
 	}
 	public static WebDriver getDriver() {
@@ -43,9 +52,12 @@ public class DriverFactory {
 		return driver.get();
 		
 	}
+	public static ConfigReader configReader() {
+		return configFileReader;
+	}
 	
 	// Close the WebDriver
-    public  void closeDriver() {
+    public  void quitDriver() {
         if (driver.get() != null) {
             driver.get().quit();
             driver.remove(); // Removes driver from ThreadLocal to clean up resources

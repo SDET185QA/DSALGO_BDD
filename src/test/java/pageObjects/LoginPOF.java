@@ -12,17 +12,13 @@ import utilities.LoggerLoad;
 
 
 public class LoginPOF {
-	// Define the WebDriver instance and instantiate it
-	//public static WebDriver initdriver = DriverFactory.webdriverinitialize();
-	public static WebDriver driver = DriverFactory.getDriver();
-	String loginpageurl = ConfigReader.getloginUrl("loginpageurl");
-	String applicationurl = ConfigReader.getloginUrl("applicationurl");
-	String datastructureurl = ConfigReader.getloginUrl("datastructureurl");
+	// Define the WebDriver instance and instantiate i
+	WebDriver driver = DriverFactory.getDriver();
+	ConfigReader configFileReader=DriverFactory.configReader();
 		
 		
-		 // Use the @FindBy annotation to identify the elements on the page
-		@FindBy(linkText = "Get Started")
-	    private WebElement getStarted;
+		@FindBy(xpath = "//button[@class='btn']")
+		WebElement getStarted;
 		
 		@FindBy(linkText = "Sign in")
 	    private WebElement signIn;
@@ -42,6 +38,33 @@ public class LoginPOF {
 		@FindBy(xpath = "//div[@class='alert alert-primary']")
 	    private WebElement logoutalert;
 		
+		
+		@FindBy(xpath = "//a[@href='data-structures-introduction']")
+	    private WebElement getStartedDataStructures;
+		
+		
+		@FindBy(xpath = "//a[@href='array']")
+	    private WebElement getStartedArray;
+		
+		
+		@FindBy(xpath = "//a[@href='linked-list']")
+	    private WebElement getStartedLinkedList;
+		
+		
+		@FindBy(xpath = "//a[@href='stack']")
+	    private WebElement getStartedStack;
+		
+		
+		@FindBy(xpath = "//a[@href='queue']")
+	    private WebElement getStartedQueue;
+		
+		
+		@FindBy(xpath = "//a[@href='tree']")
+	    private WebElement getStartedTree;
+		
+		@FindBy(xpath = "//a[@href='graph']")
+	    private WebElement getStartedGraph;
+		
 		// Constructor to initialize the page object with the WebDriver instance
 		public LoginPOF() {
 			
@@ -49,117 +72,147 @@ public class LoginPOF {
 			PageFactory.initElements(driver, this);
 		}
 		
-public void loginpage() {
-			
-			LoggerLoad.info("Opening the Login page url"+loginpageurl );
-	
 		
-			driver.get(loginpageurl);
-			//getStarted.click();
+		public void clickOnGetstarted() {
+			
+			LoggerLoad.info("Clicking on get started" );
+		    getStarted.click();
 			
 		}
+		
+		
+		
 		public void clickOnSignin() {
 			LoggerLoad.info("Clicking in Signin Button " );
 			signIn.click();
 		}
-		 // Method to login
-		public void enter_login_credentails(String username, String password ) {
+		
+		public String getTitleHomePage(String expectedTitle) {
 			
-			
-			LoggerLoad.info("Clearing the username fields");
-			usernameField.clear();
-			LoggerLoad.info("Entering the  User Name  "+ username );
-			usernameField.sendKeys(username);
-			LoggerLoad.info("Clearing the password fields");
-			passwordField.clear();
-			LoggerLoad.info("Entering the  Password "+ password );
-			passwordField.sendKeys(password);
-			
-			
+			String actualTitle = driver.getTitle();
+			LoggerLoad.info("The Page Title is" + actualTitle);
+			return actualTitle;
 		}
-		//Method to click on login
-		public void clickonLogin() {
-			LoggerLoad.info("Clicking in Login Button " );
-			loginButton.click();
-			
-		}
-		//Method to click on login
-		public void clickonLogout() {
-			LoggerLoad.info("Clicking in Signout Button " );
-			signoutButton.click();
-			
+		
+		
+	   public void clickonLogin() {
+					LoggerLoad.info("Clicking in Login Button " );
+					loginButton.click();
 					
 				}
-public String validate_login_with_blank_credentials(String validationMessage,String field) {
-			
-			LoggerLoad.info("Expected error message is   "+ validationMessage );
-			String message1 = null;
-			if (field.equalsIgnoreCase("username")) {
-			@SuppressWarnings("deprecation")
-			String message = usernameField.getAttribute("validationMessage");
-			message1 =message;	
-
-			} else if (field.equalsIgnoreCase("password")) {
-				@SuppressWarnings("deprecation")
-				String message = passwordField.getAttribute("validationMessage");
-				message1 =message;		
-			}
-			
-			return message1;
+				
+				
+	  public String validate_login_with_blank_credentials(String validationMessage,String field) {
 					
-		}
-		
-	
-	public void enter_user_name(String username) {
-		LoggerLoad.info("Clearing the username fields");
-		usernameField.clear();
-		LoggerLoad.info("Entering the  User Name  "+ username );
-		usernameField.sendKeys(username);	
-	}
-	
-	public String getTitleHomePage(String expectedTitle) {
-		String actualTitle = driver.getTitle();
-		LoggerLoad.info(actualTitle);
-		return actualTitle;
-	}
-	
-	public String getlogoutAlert(String expectedLogoutMessage) {
-		String logoutMessage = logoutalert.getText();
-		LoggerLoad.info(logoutMessage);
-		return logoutMessage;
-	}
-	public void homepage() {
-		
-		LoggerLoad.info("Opening the Login page url"+applicationurl );
-		driver.get(applicationurl);
-			
-	}
+					LoggerLoad.info("Expected error message is   "+ validationMessage );
+					String message1 = null;
+					if (field.equalsIgnoreCase("username")) {
+					@SuppressWarnings("deprecation")
+					String message = usernameField.getAttribute("validationMessage");
+					message1 =message;	
 
-	public void clickOnGetstarted() {
+					} else if (field.equalsIgnoreCase("password")) {
+						@SuppressWarnings("deprecation")
+						String message = passwordField.getAttribute("validationMessage");
+						message1 =message;		
+					}
+					
+					return message1;
+							
+				}
+				
+		public void enter_user_name(String username) {
+					LoggerLoad.info("Clearing the username fields");
+					usernameField.clear();
+					LoggerLoad.info("Entering the  User Name  "+ username );
+					usernameField.sendKeys(username);	
+				}
+				
+		public void enter_user_password(String password) {
+					LoggerLoad.info("Clearing the username fields");
+					passwordField.clear();
+					LoggerLoad.info("Entering the  User Name  "+ password );
+					passwordField.sendKeys(password);	
+				}
+				
+		public void enter_login_credentails(String username, String password ) {
+					
+					
+					LoggerLoad.info("Clearing the username fields");
+					usernameField.clear();
+					LoggerLoad.info("Entering the  User Name  "+ username );
+					usernameField.sendKeys(username);
+					LoggerLoad.info("Clearing the password fields");
+					passwordField.clear();
+					LoggerLoad.info("Entering the  Password "+ password );
+					passwordField.sendKeys(password);
+					
+					
+				}
 		
-		LoggerLoad.info("Opening the Login page url"+loginpageurl );
-	    getStarted.click();
-		
-	}
+				public void clickOnGetstartedDataStructures() {
+					
+					LoggerLoad.info("Clicking on Datastructures getstarted" );
+					getStartedDataStructures.click();
+					
+				}
+				public void clickonLogout() {
+					LoggerLoad.info("Clicking in Signout Button " );
+					signoutButton.click();
+					
+							
+						}
+				
+				public String getlogoutAlert(String expectedLogoutMessage) {
+					String logoutMessage = logoutalert.getText();
+					LoggerLoad.info("The alert message is " +logoutMessage);
+					return logoutMessage;
+				}
+				
+				public void clickOnGetstartedArray() {
+					
+					LoggerLoad.info("Clicking on Array getstarted" );
+					getStartedArray.click();
+					
+				}
+
+
+
+				public void clickOnGetstartedLinkedList() {
 	
-	public void enter_user_password(String password) {
-		LoggerLoad.info("Clearing the username fields");
-		passwordField.clear();
-		LoggerLoad.info("Entering the  User Name  "+ password );
-		passwordField.sendKeys(password);	
-	}
-	public void datastructurepage() {
-		
-		LoggerLoad.info("Opening the datastructure page url"+datastructureurl );
-		driver.get(datastructureurl);	
-	}
+					LoggerLoad.info("Clicking on LinkedList getstarted" );
+					getStartedLinkedList.click();
+					
+				}
+
+				public void clickOnGetstartedStack() {
 	
-		
-		
+					LoggerLoad.info("Clicking on Stack getstarted" );
+					getStartedStack.click();
+					
+				}
+	
 
+				public void clickOnGetstartedQueue() {
+	
+					LoggerLoad.info("Clicking on Queue getstarted" );
+					getStartedQueue.click();
+					
+				}
 
+				public void clickOnGetstartedTree() {
+	
+					LoggerLoad.info("Clicking on Tree getstarted" );
+					getStartedTree.click();
+					
+				}
 
-
+				public void clickOnGetstartedGraph() {
+	
+					LoggerLoad.info("Clicking on Graph getstarted" );
+					getStartedGraph.click();
+					
+				}
 
 
 }

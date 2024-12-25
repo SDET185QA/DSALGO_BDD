@@ -18,7 +18,7 @@ import utilities.Utility_Methods;
 
 public class ArrayPOF {
 	
-	public static WebDriver driver = DriverFactory.getDriver();
+	WebDriver driver = DriverFactory.getDriver();
 	Utility_Methods util=new Utility_Methods();
 	
 	
@@ -102,7 +102,6 @@ public class ArrayPOF {
 	public String getpageTitle() {
 		String actualPageTitle = driver.getTitle();
 		LoggerLoad.info("The tile of array page is "+ actualPageTitle);
-		//Assert.assertEquals(expectedPageTitle, actualPageTitle);
 		return actualPageTitle;
 		}
 	public void clickOnarraysInPython() {
@@ -168,9 +167,7 @@ public class ArrayPOF {
     {
         
 		 String treeUrlName= ConfigReader.geturl(pagename);
-	        LoggerLoad.info(treeUrlName);
-	        LoggerLoad.info("INSIDE POF TREEURL");
-	        util.driver.get(treeUrlName);
+	        driver.get(treeUrlName);
     }
 	
 	public void fetchPythonCode(String PythonCode) {
@@ -196,9 +193,9 @@ public class ArrayPOF {
 	public String fetchErrorMessage()
     {
 		LoggerLoad.info("Get the error message pop up for the invalid python code ");
-        String errorMessage=util.driver.switchTo().alert().getText();
+        String errorMessage=driver.switchTo().alert().getText();
         LoggerLoad.info("Click on the OK button for the error pop up ");
-        util.driver.switchTo().alert().accept();
+        driver.switchTo().alert().accept();
         return errorMessage;
     }
 	
