@@ -5,16 +5,23 @@ Feature: Validate Tree Page
   	Given The user is on DS-ALGO application sign in page
   	When The user enter valid credentials "SDET185" and password as "@SDET!*%"
   	Then The user should land in homepage
+  	
+  	@TestScenario_tree_00
+    Scenario: The user is able to navigate to Tree page in Datasturcture
+    Given The user is on the home page of DS-ALGO Portal
+    When The user select the drop down option and select the tree option
+    Then The user lands in the Trees Datastructure page with title "Tree"
+  	
 
  @TestScenario_tree_01
   Scenario: To validate the Tree link
-    Given The user is on the Tree page
+    Given The user is on the DSAlgo Home page
     When User click on the Tree Get Started button
     Then User is on Tree page and verify tittle as "Tree"
     
  @TestScenario_tree_02
    Scenario: The user navigate to "Overview of Trees" page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Overview of Trees link
     Then The user is redirected to the "Overview of Trees"  Page
 
@@ -41,7 +48,7 @@ Feature: Validate Tree Page
     Given User is on the "Try Editor Page" of Overview of Trees page
     When User enters invalid Python code from the sheet "<SheetName>" and <RowNumber>
     And User clicks on Run button
-    Then User should be able to see error message
+    Then User should be able to see the error message
 
     Examples: 
       | SheetName  | RowNumber |
@@ -50,13 +57,13 @@ Feature: Validate Tree Page
 
 @TestScenario_tree_06
   Scenario: The user navigate to "Terminologies" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Terminologies link
     Then The user is redirected to the "Terminologies"  Page
     
 @TestScenario_tree_07
   Scenario: The user navigate to Terminologies page having an tryEditor
-    Given The user is on the Terminologies of Tree page
+   Given The user is on Terminologies of Tree page
     When The user clicks tryhere button on Terminologies page
     Then The user is redirected to tryEditor page with Run button
 
@@ -85,7 +92,7 @@ Feature: Validate Tree Page
     
  @TestScenario_tree_10
   Scenario: The user navigate to "Types of Trees" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Types of Trees link
     Then The user is redirected to the "Types of Trees"  Page
     
@@ -120,7 +127,7 @@ Feature: Validate Tree Page
        
 @TestScenario_tree_14
   Scenario: The user navigate to "Tree Traversals"  Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Tree Traversals link
     Then The user is redirected to the "Tree Traversals"  Page
     
@@ -155,7 +162,7 @@ Feature: Validate Tree Page
        
 @TestScenario_tree_18
   Scenario: The user navigate to "Traversals illustration" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Traversal illustration link
     Then The user is redirected to the "Traversals-Illustration"  Page
     
@@ -190,7 +197,7 @@ Feature: Validate Tree Page
       
  @TestScenario_tree_22     
     Scenario: The user navigate to "Binary Trees" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Binary Trees link
     Then The user is redirected to the "Binary Trees"  Page
 
@@ -225,7 +232,7 @@ Feature: Validate Tree Page
 
   @TestScenario_tree_26     
     Scenario: The user navigate to "Types of Binary trees" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on theTypes of Binary trees link
     Then The user is redirected to the "Types of Binary Trees"  Page
     
@@ -261,7 +268,7 @@ Feature: Validate Tree Page
 
  @TestScenario_tree_30     
     Scenario: The user navigate to "Implementation in Python" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Implementation in Python link
     Then The user is redirected to the "Implementation in Python"  Page
     
@@ -297,7 +304,7 @@ Feature: Validate Tree Page
 
  @TestScenario_tree_34    
     Scenario: The user navigate to "Binary Tree Traversals" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Binary Tree Traversals link
     Then The user is redirected to the "Binary Tree Traversals"  Page
     
@@ -332,7 +339,7 @@ Feature: Validate Tree Page
    
     @TestScenario_tree_38    
     Scenario: The user navigate to "Implementation of Binary Trees" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Implementation of Binary Trees link
     Then The user is redirected to the "Implementation of Binary Trees"  Page
     
@@ -368,7 +375,7 @@ Feature: Validate Tree Page
     
   @TestScenario_tree_42    
     Scenario: The user navigate to "Applications of Binary Trees" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Applications of Binary Trees link
     Then The user is redirected to the "Applications of Binary trees"  Page
     
@@ -400,11 +407,11 @@ Feature: Validate Tree Page
     Examples: 
       | SheetName  | RowNumber |
       | PythonCode |         1 |
-      #
+      
   
  @TestScenario_tree_46    
     Scenario: The user navigate to "Binary Search Trees" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Binary Search Trees link
     Then The user is redirected to the "Binary Search Trees"  Page
     
@@ -441,7 +448,7 @@ Feature: Validate Tree Page
 
  @TestScenario_tree_50   
     Scenario: The user navigate to "Implementation of BST" Page
-    Given The user is on the Tree page
+    Given The user is on "Tree" page
     When The user clicks on the Implementation of BST link
     Then The user is redirected to the "Implementation Of BST"  Page
     
@@ -475,6 +482,3 @@ Feature: Validate Tree Page
       | PythonCode |         1 |
       
 
-
-    
-    

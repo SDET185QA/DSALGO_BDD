@@ -16,7 +16,12 @@ public class TreePOF {
     Utility_Methods util=new Utility_Methods();
 	
     ConfigReader cr = new ConfigReader();
-    @FindBy(xpath="//div[@class=\"col\"][6]//a") WebElement TreeGetStart;
+    @FindBy(xpath = "//div[@id='navbarCollapse']//a[contains(text(), 'Data Structures')]")
+    private WebElement dropdownoption;
+	@FindBy(xpath = "//a[@class='dropdown-item'][@href='/tree']")
+    private WebElement treedropdown;
+    @FindBy(xpath="//div[@class=\"col\"][6]//a") 
+    private  WebElement TreeGetStart;
     @FindBy(linkText="Overview of Trees") WebElement OverOfTree;
     @FindBy(linkText="Terminologies") WebElement Terminologies;
     @FindBy(linkText="Types of Trees") WebElement TypesOfTree;
@@ -43,7 +48,32 @@ public class TreePOF {
     public TreePOF() {
         PageFactory.initElements(driver, this);
     }
-
+	public void dropDownClick() {
+		
+		dropdownoption.click();
+		
+	}
+	
+    public void treeDropClick() {
+		
+		treedropdown.click();
+	}
+    
+    public void  navigateTo(String pagename)
+    {
+        
+		 String treeUrlName= ConfigReader.geturl(pagename);
+	        driver.get(treeUrlName);
+    }
+	public String fetchErrorMessage()
+    {
+		LoggerLoad.info("Get the error message pop up for the invalid python code ");
+        String errorMessage=driver.switchTo().alert().getText();
+        LoggerLoad.info("Click on the OK button for the error pop up ");
+        driver.switchTo().alert().accept();
+        return errorMessage;
+    }
+    
     public void ClickTreeGS() {
         LoggerLoad.info("User Click the tree Get Started Button");
         TreeGetStart.click();
@@ -137,15 +167,15 @@ public class TreePOF {
         PQues.click();
     }
 	
-	public void  navigateTo(String pagename)
-    {
-        
-		 String treeUrlName= ConfigReader.geturl(pagename);
-	        LoggerLoad.info(treeUrlName);
-	        LoggerLoad.info("INSIDE POF TREEURL");
-	        //util.driver.get(treeUrlName);  ///commeted to overcome the maven error
-	        driver.get(treeUrlName);
-    }
+//	public void  navigateTo(String pagename)
+//    {
+//        
+//		 String treeUrlName= ConfigReader.geturl(pagename);
+//	        LoggerLoad.info(treeUrlName);
+//	        LoggerLoad.info("INSIDE POF TREEURL");
+//	        //util.driver.get(treeUrlName);  ///commeted to overcome the maven error
+//	        driver.get(treeUrlName);
+//    }
 	public String fetchOutput()
     {
         util.waitForElement(output);
