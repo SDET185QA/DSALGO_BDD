@@ -38,19 +38,24 @@ Scenario: User is able to navigate to Practice Questions
     When user clicks Practice Questions  link
     Then User should be directed to the Practice Question Page with list of Questions Page
     
-    Scenario Outline: User is able to Interact with Code Editor on Graph Page with Valid python code
-    Given user is on Try Editor
-    When  user enter valid pythonCode in tryEditor as "<Input>"
-    Then  user should be presented with Run result
-    Examples:
-     |Input| 
-     |print('Hello')|
-    
-Scenario Outline:  User is able to Interact  with Code Editor on Graph Page with InValid python code
-    Given user is on Try Editor
-    When  user enter Invalid pythonCode in tryEditor as "<Input>"
-    Then  The user should get an alert message
-    Examples:
-     |Input| 
-     |print Hello|   
+      Scenario Outline: Validation of valid python code in TryEditor page
+    Given User is on the "Try Editor Page".
+    When User enters Valid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on Run Button
+    Then User should be able to see the  valid output
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         0 |
+
+Scenario Outline: Validation of error message for invalid python code in TryEditor page
+    Given User is on the "Try Editor Page". 
+    When User enters Invalid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on  the Run button
+    Then User should be able to see  the error message
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         1 |
+
  
