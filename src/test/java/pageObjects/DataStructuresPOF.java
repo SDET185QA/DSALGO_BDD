@@ -12,13 +12,14 @@ import org.testng.Assert;
 import io.cucumber.messages.types.Duration;
 import utilities.ConfigReader;
 import utilities.LoggerLoad;
+import utilities.Utility_Methods;
 import webDriverManager.DriverFactory;
 
 
 public class DataStructuresPOF {
 
-	public static WebDriver driver = DriverFactory.getDriver();
-	String homePageurl="https://dsportalapp.herokuapp.com/home";
+    WebDriver driver = DriverFactory.getDriver();
+	Utility_Methods util=new Utility_Methods();
 
 	@FindBy(xpath = "//a[@href='data-structures-introduction']")
 	WebElement getStartedDSintro_link;
@@ -32,23 +33,29 @@ public class DataStructuresPOF {
 	WebElement practiceQuestins;
 	@FindBy(xpath="//textarea[@tabindex='0']")
 	public WebElement Input;
+	@FindBy (xpath="//form/div/div/div/textarea")
+	private WebElement editorInput;
+	
+	@FindBy (xpath="//pre[@id='output']") 
+	private WebElement output;
+	
+	@FindBy (id="answer_form")
+	private WebElement answerform;
 	
 	
 	public DataStructuresPOF() {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void DShomepage() {
-		driver.get(homePageurl);
-	}
 	public void getStarted_DS() {
 		
 		getStartedDSintro_link.click();
 	}
 
-	public String getPageTitle() {
-		String title = driver.getTitle();
-		return title;
+	public String getpageTitle() {
+		String actualPageTitle = driver.getTitle();
+		LoggerLoad.info("The tile of array page is "+ actualPageTitle);
+		return actualPageTitle;
 	}
 
 	public void clickOnTimeComplexitylink() {
@@ -63,18 +70,36 @@ public class DataStructuresPOF {
 	public void Input(String pythonCode) {
 		Input.sendKeys(pythonCode);
 	}
+	public void fetchPythonCode(String PythonCode) {
+        System.out.println("Editor Input: "+editorInput);
+        util.waitForElement(answerform);
+        answerform.click();
+        editorInput.sendKeys(PythonCode);
+    }
 	
 
 	public void clickonRunButton() {
+		LoggerLoad.info("Click on the run button");
 		run_button.click();
 		
 	}
-	public String getpageTitle(String expectedPageTitle) {
-		String actualPageTitle = driver.getTitle();
-		LoggerLoad.info("The tile of array page is "+ actualPageTitle);
-		return actualPageTitle;
-		
-		}
+
+	public String fetchOutput()
+    {
+        util.waitForElement(output);
+        LoggerLoad.info("Click on the OK button for the error pop up ");
+        String Result = output.getText();
+        return Result;
+        
+    }
+	public String fetchErrorMessage()
+    {
+		LoggerLoad.info("Get the error message pop up for the invalid python code ");
+        String errorMessage=driver.switchTo().alert().getText();
+        LoggerLoad.info("Click on the OK button for the error pop up ");
+        driver.switchTo().alert().accept();
+        return errorMessage;
+    }
 	
 	public void clickOnPracticeQuestion() {
 		practiceQuestins.click();

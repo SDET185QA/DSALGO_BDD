@@ -18,35 +18,39 @@ Feature: Data Structures Introduction Functionality
 		Given  User is on  the Data-Structures-Introduction page
 		When The user clicks Time Complexity
 	  Then  user is redirected to "Time Complexity" Page
-	  
+
 	@TestScenario_dS_03
-	  Scenario: Redirect to Practice Questions page from Time Complexity page	 
-    Given  User is on Time Complexity Page 
-    When The user clicks Practice Questions link in Time Complexity page	
-    Then The user should be redirected to the "Practice Questions" page in Data Structures Introduction
-    
-	@TestScenario_dS_04 
     Scenario: User is able to navigate to try Editor on Time Complexity Page 
     Given  User is on the Time Complexity Page 
     When  user clicks try here button of Time Complexity
     Then user should be redirected to a page having an tryEditor with a Run button
     
- 	@TestScenario_dS_05
+ 	@TestScenario_dS_04
     Scenario Outline: User is able to Interact  with Code Editor on Data Structures-Introduction with Valid python code
     Given user is on Try Editor page of Data Structures-Introduction
-    When  user enter valid pythonCode in tryEditor  "<Input>"
-    Then  user should be able to find valid Run result
-    Examples:
-     |Input| 
-     |print('Hello')|
-     
-  @TestScenario_dS_06   
-   Scenario Outline:  User is able to Interact  with Code Editor on Data Structures-Introduction with InValid python code
-    Given user is on Try Editor page of Data Structures-Introduction
-    When  user enter Invalid pythonCode on tryEditor "<Input>"
-    Then  The user should get an alert message box
-    Examples:
-     |Input| 
-     |print Try|
+    When User enters a valid Python code from the sheet "<SheetName>" and <RowNumber>
+    And User clicks the Run button
+    Then User should be able to see valid output
 
- 
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         0 |
+      
+     
+  @TestScenario_dS_05  
+  Scenario Outline: Validation of error message for invalid python code in TryEditor page
+    Given user is on Try Editor page of Data Structures-Introduction
+    When User enters a invalid Python code from the sheet "<SheetName>" and <RowNumber>
+    And User clicks on Run button
+    Then User should be able to see error message dialogue
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         1 |
+      
+ @TestScenario_ds_06
+   Scenario: User is able to navigate to Practice Questions
+    Given  User is on the Time Complexity Page 
+    When  user clicks on Practice Questions link
+    Then user should be redirected to "Practice Questions" page  
+    
