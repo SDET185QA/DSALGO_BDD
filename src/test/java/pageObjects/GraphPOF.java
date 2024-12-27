@@ -6,10 +6,14 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utilities.ConfigReader;
+import utilities.LoggerLoad;
+import utilities.Utility_Methods;
 import webDriverManager.DriverFactory;
 
 public class GraphPOF {
-	public static WebDriver driver =  DriverFactory.getDriver();
+     WebDriver driver =  DriverFactory.getDriver();
+     Utility_Methods util=new Utility_Methods();
 
 	
 	//Constructor
@@ -34,11 +38,20 @@ public class GraphPOF {
 	@FindBy(xpath="//a[text()='Try here>>>']")
     private WebElement Try;
 	
+	@FindBy (xpath="//form/div/div/div/textarea")
+	private WebElement editorInput;
+	
+	@FindBy (id="answer_form")
+	private WebElement answerform;
+	
 	@FindBy(xpath="//textarea[@tabindex='0']")
 	public WebElement Input;
 	
 	@FindBy(xpath="//button[text()='Run']")
     private WebElement  Run_btn;
+	
+	@FindBy (xpath="//pre[@id='output']") 
+	private WebElement output;
 	
 	@FindBy(xpath="//a[text()='Graph Representations']")//Graph Representation
     private WebElement Graph_Representation_link;
@@ -68,6 +81,7 @@ public class GraphPOF {
   		public void Runbtn() {
   			Run_btn.click();
   		}
+  		
   		public void GraphRepresentationLink() {
   			Graph_Representation_link.click();
   		}
@@ -77,6 +91,36 @@ public class GraphPOF {
   		public String getErrorOnTryEditor(String message) {
 			return message;
 		}
+  		public void  navigateTo(String pagename)
+  	    {
+  	        
+  			 String GraphUrlName= ConfigReader.geturl(pagename);
+  		        driver.get(GraphUrlName);
+  	    }
+  		public void fetchPythonCode(String PythonCode) {
+  	        System.out.println("Editor Input: "+editorInput);
+  	        util.waitForElement(answerform);
+  	        answerform.click();
+  	        editorInput.sendKeys(PythonCode);
+  	        
+  	    }
+  		public String fetchOutput()
+  	    {
+  	        util.waitForElement(output);
+  	        LoggerLoad.info("Click on the OK button for the error pop up ");
+  	        String Result = output.getText();
+  	        return Result;
+  	        
+  	    }
+  		public String fetchErrorMessage()
+  	    {
+  			LoggerLoad.info("Get the error message pop up for the invalid python code ");
+  	        String errorMessage=driver.switchTo().alert().getText();
+  	        LoggerLoad.info("Click on the OK button for the error pop up ");
+  	        driver.switchTo().alert().accept();
+  	        return errorMessage;
+  	    }
+  		
 
 		
 
