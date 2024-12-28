@@ -2,28 +2,38 @@ package stepDefinitions;
 
 import static org.testng.Assert.assertEquals;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageObjects.QueuePOF;
+import utilities.ConfigReader;
+import utilities.ExcelReader;
 import utilities.LoggerLoad;
 
 public class QueueSteps {
 	
-	public QueuePOF QPOF = new QueuePOF();
+	public QueuePOF QueuePageObject = new QueuePOF();
+	String PythonCode;
+    String Output;
+    String ExpectedResult,ExpectedError,ExpectedMsg;
+	String Excelpath=ConfigReader.getexcelfilepath();
 
 
 @Given("The user is on the Home page")
 public void the_user_is_on_the_home_page() { 
-	//String Title = QPOF.getPageTitle();
 	LoggerLoad.info("User is on the Homepage");
-	//assertEquals(Title,"NumpyNinja");
 }
 
 @When("User clicks the Get Started button in Queue")
 public void user_clicks_the_get_started_button_in_queue() {
 	 LoggerLoad.info("-----Click on get Started button----");
-    QPOF.getStarted_Q();
+	 QueuePageObject.getStarted_Q();
 }
 
 @Then("User should be redirected to the Queue page clicking on Get Started")
@@ -34,13 +44,13 @@ public void user_should_be_redirected_to_the_queue_page_clicking_on_get_started(
 @Given("User is on the Queue Page")
 public void user_is_on_the_queue_page() {
 	 LoggerLoad.info("-----User is on the Queue Page----");
-	QPOF.getStarted_Q();  
+	 QueuePageObject.getStarted_Q();  
 }
 
 @When("user clicks Implementation of Queue in python link")
 public void user_clicks_implementation_of_queue_in_python_link() {
 	 LoggerLoad.info("-----User is clicking on Implementation of Queue ----");
- QPOF.ImplementationofQueueinPythonLink();
+	 QueuePageObject.ImplementationofQueueinPythonLink();
 }
 
 @Then("User should be redirected to the Implementation of queue in Python Page")
@@ -52,21 +62,20 @@ public void user_should_be_redirected_to_the_implementation_of_queue_in_python_p
 @Given("User is on the Implementation of Queue in python link")
 public void user_is_on_the_implementation_of_queue_in_python_link() {
 	LoggerLoad.info("-----User is on the Implementation of Queue----");
-	QPOF.getStarted_Q();
-	QPOF.ImplementationofQueueinPythonLink();
+	QueuePageObject.getStarted_Q();
+	QueuePageObject.ImplementationofQueueinPythonLink();
 	
     }
 
 @When("user clicks try here button")
 public void user_clicks_try_here_button() {
 	LoggerLoad.info("-----User is clicking on try here button----");
-	QPOF.clickTry();
+	QueuePageObject.clickTry();
 }
 
 
 @Then("user should be redirected to a page having an tryEditor with a Run button to test")
 public void user_should_be_redirected_to_a_page_having_an_try_editor_with_a_run_button_to_test() {
-	//String Title = QPOF.getPageTitle();
 	LoggerLoad.info("-----User is redirected to the page having tryEditor----");
 	
 
@@ -75,105 +84,129 @@ public void user_should_be_redirected_to_a_page_having_an_try_editor_with_a_run_
 @Given("user is on Try Editor page")
 public void user_is_on_try_editor_page() {
 	LoggerLoad.info("-----User on Try Editor----");
-	QPOF.getStarted_Q();
-	QPOF.ImplementationofQueueinPythonLink();
-	QPOF.clickTry();
+	QueuePageObject.getStarted_Q();
+	QueuePageObject.ImplementationofQueueinPythonLink();
+	QueuePageObject.clickTry();
 
 }
 
-@When("user enter valid pythonCode in tryEditor as print {string}")
-public void user_enter_valid_python_code_in_try_editor_as_print_hello_numpy_ninjas(String Input) {
-	LoggerLoad.info("-----User enters valid pythoncode----");
-    QPOF.Input.sendKeys(Input);
-    QPOF. RunImplementationOfQueue();
-}
+@When("User should enter Valid Python code from sheet {string} and {int}")
+public void user_should_enter_valid_python_code_from_sheet_and(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException {
+	LoggerLoad.info("User is on Try Editor page");
+    ExcelReader reader = new ExcelReader();
 
-@Then("user should be presented with Run result")
-public void user_should_be_presented_with_run_result() {
-//	String Title = QPOF.getPageTitle();
-//	System.out.println("Presented with a Run Result"+ Title);
-	LoggerLoad.info("-----User is viewing the Result----");
-    }
-
-@When("user enter Invalid pythonCode in tryEditor {string}")
-public void user_enter_invalid_python_code_in_try_editor(String Input) {
-	LoggerLoad.info("-----User enters Invalid pythoncode----");
-	QPOF.Input.sendKeys(Input);
-    QPOF. RunImplementationOfQueue();
+    List<Map<String, String>> testdata = reader.getData(Excelpath, SheetName);
+    LoggerLoad.info(SheetName);
+    PythonCode = testdata.get(RowNumber).get("PythonCode");
+    ExpectedResult=testdata.get(RowNumber).get("Output");
+    LoggerLoad.info("Expected Result is "+ExpectedResult);
+    LoggerLoad.info("User enters PythonCode as \" " + PythonCode);
     
+    if ( PythonCode!= null )
+    	QueuePageObject.fetchPythonCode(PythonCode);
 }
-@Then("The user should get an alert message")
-public void the_user_should_get_an_alert_message() {
-	LoggerLoad.info("-----User gets an alert message----");
-	String actualErrorMsg = QPOF.getErrorOnTryEditor("SyntaxError: bad input on line 1");
-	assertEquals(actualErrorMsg, "SyntaxError: bad input on line 1");
-    }
+@When("User clicks on Run")
+public void user_clicks_on_run() {
+	LoggerLoad.info("User clicks on Run Button");
+	QueuePageObject.Run_btn_Queue();
+}
+@Then("User should see the  valid output")
+public void user_should_see_the_valid_output() {
+	LoggerLoad.info("User gets the Result of entered Python Code");
+    String fetchOutput = QueuePageObject.fetchOutput();
+    
+    LoggerLoad.info("Displayed Result is "+fetchOutput);
+    assertEquals(fetchOutput,ExpectedResult,"Expected and actual result  matches");
+}
+
+
+@When("User should enter Invalid Python code from sheet {string} and {int}")
+public void user_should_enter_invalid_python_code_from_sheet_and(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException {
+	LoggerLoad.info("User is on Try Editor page");
+    ExcelReader reader = new ExcelReader();
+
+    List<Map<String, String>> testdata = reader.getData(Excelpath, SheetName);
+    PythonCode = testdata.get(RowNumber).get("PythonCode");
+    ExpectedResult=testdata.get(RowNumber).get("Output");
+    LoggerLoad.info("Expected Result is "+ExpectedResult);
+
+    LoggerLoad.info("User enters PythonCode as \" " + PythonCode);
+    if ( PythonCode!= null )
+    	QueuePageObject.fetchPythonCode(PythonCode);
+
+}
+@When("User clicks on  the Run")
+public void user_clicks_on_the_run() {
+	LoggerLoad.info("User clicks on Run Button");
+	QueuePageObject.Run_btn_Queue();
+}
+@Then("User should be able to see the Error message")
+public void user_should_be_able_to_see_the_error_message() {
+	 LoggerLoad.info("User gets the error message in an Alert");
+     String actualError = QueuePageObject.fetchErrorMessage();
+     String ExpectedError="NameError: name 'hello' is not defined on line 1";
+     LoggerLoad.info("Displayed Error Message  is "+actualError);
+     assertEquals(actualError,ExpectedError,"Invalid Syntax error message");
+     
+}
 
 @When("User clicks  Implementation using Collection.deque link")
 public void user_clicks_implementation_using_collection_deque_link() {
 	LoggerLoad.info("-----User is clicking on Implementation using Collections.deque----");
-	QPOF.ImplementationUsingCollectiondeQueueLink();
+	QueuePageObject.ImplementationUsingCollectiondeQueueLink();
 }
 
 @Then("User should be redirected to the Implementation using Collection.deque Page")
 public void user_should_be_redirected_to_the_implementation_using_collection_deque_page() {
 	LoggerLoad.info("-----User is redirected to the Implementation using Collection.deque Page ----");	
-//	String Title = QPOF.getPageTitle();
-//	System.out.println("Implementation Of queue in Python"+ Title);
 }
 
 @Given("User is on the Implementation using Collection.deque link")
 public void user_is_on_the_implementation_using_collection_deque_link() {
 	LoggerLoad.info("-----User is on Implementation using collection.deque----");
-	QPOF.getStarted_Q();
-	QPOF.ImplementationUsingCollectiondeQueueLink(); 
+	QueuePageObject.getStarted_Q();
+	QueuePageObject.ImplementationUsingCollectiondeQueueLink(); 
 }
 
 @When("user clicks  Implementation using array page  link")
 public void user_clicks_implementation_using_array_page_link() {
 	LoggerLoad.info("-----User clicking on Implementation using array page----");
-	QPOF.ImplementationUsingArray();	
+	QueuePageObject.ImplementationUsingArray();	
 }
 
 @Then("User should be redirected to the Implementation using array page")
 public void user_should_be_redirected_to_the_implementation_using_array_page() {
 	LoggerLoad.info("-----User is redirected to the Implementation using array page----");
-//	String Title = QPOF.getPageTitle();
-//	System.out.println("Try Editor with Run button"+ Title);
     }  
 
 @When("user clicks  Queue Operations page link")
 public void user_clicks_queue_operations_page_link() {
 	LoggerLoad.info("-----User is clicking on Queue Operation page----");
-	QPOF.QueueOperations();
+	QueuePageObject.QueueOperations();
 }
 
 @Then("User should be directed to the Queue Operations page")
 public void user_should_be_directed_to_the_queue_operations_page() {
 	LoggerLoad.info("-----User is redirected to the Queue Operations----");
-//	String Title = QPOF.getPageTitle();
-//	System.out.println("Try Editor with Run button"+ Title);
     } 
 
  @Given("User is on the Queue Operation page")
  public void user_is_on_the_queue_operation_page() {
 	 LoggerLoad.info("-----User is on the Queue Operation Page----");
-	    QPOF.getStarted_Q();
-	    QPOF.QueueOperations();
+	 QueuePageObject.getStarted_Q();
+	 QueuePageObject.QueueOperations();
 
  }
 
 @When("user clicks Practice Questions link")
 public void user_clicks_practice_questions_link() {
 	LoggerLoad.info("-----User clicks on Practice Questions----");
-    QPOF.clickPracticeQuestions();
+	QueuePageObject.clickPracticeQuestions();
 }
 
 @Then("User should be directed to the Practice Question Page with list of Questions Page")
 public void user_should_be_directed_to_the_practice_question_page_with_list_of_questions_page() {
 	LoggerLoad.info("-----User is redirected to the Practice Question page----");
-//	String Title = QPOF.getPageTitle();
-//	System.out.println("Practice Question Page with list of Questions"+ Title);
     } 
 
 }

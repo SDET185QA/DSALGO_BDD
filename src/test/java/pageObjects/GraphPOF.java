@@ -26,38 +26,37 @@ public class GraphPOF {
 	
 	//Locators
 	
-	@FindBy(xpath="//a[@href ='graph']")
-	public WebElement getStarted_btn;
+	    @FindBy(xpath="//a[@href ='graph']")
+	    public WebElement getStarted_btn;
 	
-    @FindBy(xpath="//a[@href='graph']")//Graph Page
-    private WebElement Graph_home_link;
+        @FindBy(xpath="//a[@href='graph']")//Graph Page
+        private WebElement Graph_home_link;
 	
-    @FindBy(xpath="//a[@href='graph']")
-    private WebElement Graph_link;
+        @FindBy(xpath="//a[@href='graph']")
+        private WebElement Graph_link;
     
-	@FindBy(xpath="//a[text()='Try here>>>']")
-    private WebElement Try;
+	    @FindBy(xpath="//a[text()='Try here>>>']")
+        private WebElement Try;
 	
-	@FindBy (xpath="//form/div/div/div/textarea")
-	private WebElement editorInput;
+		
+		@FindBy (xpath="//form/div/div/div/textarea")
+		private WebElement editorInput;
+		
+		@FindBy (id="answer_form")
+		private WebElement answerform;
+		
+		@FindBy(xpath="//button[text()='Run']")
+	    private WebElement  Run_btn;
+		
+		@FindBy (xpath="//pre[@id='output']") 
+		private WebElement output;
+		
 	
-	@FindBy (id="answer_form")
-	private WebElement answerform;
+	    @FindBy(xpath="//a[text()='Graph Representations']")//Graph Representation
+        private WebElement Graph_Representation_link;
 	
-	@FindBy(xpath="//textarea[@tabindex='0']")
-	public WebElement Input;
-	
-	@FindBy(xpath="//button[text()='Run']")
-    private WebElement  Run_btn;
-	
-	@FindBy (xpath="//pre[@id='output']") 
-	private WebElement output;
-	
-	@FindBy(xpath="//a[text()='Graph Representations']")//Graph Representation
-    private WebElement Graph_Representation_link;
-	
-    @FindBy(xpath="//a[text()='Practice Questions']")//Practice Questions
-    private WebElement Practice_Questions;
+        @FindBy(xpath="//a[text()='Practice Questions']")//Practice Questions
+        private WebElement Practice_Questions;
 	
     
   //Actions	
@@ -74,9 +73,6 @@ public class GraphPOF {
   	  	    }
   		public void clickTry() {
   			Try.click();
-  		}
-  		public void Input(String pythonCode) {
-  			Input.sendKeys(pythonCode);
   		}
   		public void Runbtn() {
   			Run_btn.click();

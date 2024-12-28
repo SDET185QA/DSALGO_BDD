@@ -7,7 +7,7 @@ Background: The user is logged in DS Algo portal
   	Then The user should land in homepage
 
     
- Scenario: User is able to navigate to Graph home page clicking on Get Started 
+Scenario: User is able to navigate to Graph home page clicking on Get Started 
     Given The user is on the Home page	
 		When User clicks the Get Started button in Graph 
 		Then User should be redirected to the Graph home page clicking on Get Started
@@ -38,7 +38,7 @@ Scenario: User is able to navigate to Practice Questions
     When user clicks Practice Questions  link
     Then User should be directed to the Practice Question Page with list of Questions Page
     
-      Scenario Outline: Validation of valid python code in TryEditor page
+Scenario Outline: Validation of valid python code in TryEditor page
     Given User is on the "Try Editor Page".
     When User enters Valid Python code from sheet "<SheetName>" and <RowNumber>
     And User clicks on Run Button
