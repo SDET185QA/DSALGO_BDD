@@ -5,7 +5,7 @@ Background: The user is logged in DS Algo portal
   	When The user enter valid credentials "SDET185" and password as "@SDET!*%"
   	Then The user should land in homepage
 
- Scenario: User is able to navigate to Queue page clicking on Get Started
+Scenario: User is able to navigate to Queue page clicking on Get Started
     Given The user is on the Home page	
     When User clicks the Get Started button in Queue 
     Then User should be redirected to the Queue page clicking on Get Started
@@ -46,24 +46,31 @@ Scenario: User is able to navigate to Queue Operations page
     When user clicks  Queue Operations page link
     Then User should be directed to the Queue Operations page
     
-  Scenario: User is able to navigate to Practice Questions 
+Scenario: User is able to navigate to Practice Questions 
     Given  User is on the Queue Operation page 
     When  user clicks Practice Questions link
-    Then User should be directed to the Practice Question Page with list of Questions Page    
-  Scenario Outline: User is able to Interact  with Code Editor on Queue Page with Valid python code
-    Given user is on Try Editor page
-    When  user enter valid pythonCode in tryEditor as print "<Input>"
-    Then  user should be presented with Run result
-    Examples:
-     |Input| 
-     |print('Hello')|
-   Scenario Outline:  User is able to Interact  with Code Editor on Queue Page with InValid python code
-    Given user is on Try Editor page
-    When  user enter Invalid pythonCode in tryEditor "<Input>"
-    Then  The user should get an alert message
-    Examples:
-     |Input| 
-     |print Try|
+    Then User should be directed to the Practice Question Page with list of Questions Page 
+       
+Scenario Outline: Validation of valid python code in TryEditor page
+    Given User is on the "Try Editor Page".
+    When User should enter Valid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on Run 
+    Then User should see the  valid output
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         0 |
+      
+      
+ Scenario Outline: Validation of error message for invalid python code in TryEditor page
+    Given User is on the "Try Editor Page". 
+    When User should enter Invalid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on  the Run 
+    Then User should be able to see the Error message
+
+    Examples: 
+      | SheetName  | RowNumber |
+      | PythonCode |         1 |
            
     
  

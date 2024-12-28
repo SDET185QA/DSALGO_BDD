@@ -10,7 +10,7 @@ import utilities.LoggerLoad;
 import webDriverManager.DriverFactory;
 
 public class HomePagePOF {
-	public static WebDriver driver = DriverFactory.getDriver();
+	WebDriver driver = DriverFactory.getDriver();
 	String url ="https://dsportalapp.herokuapp.com";
 	String homePageurl="https://dsportalapp.herokuapp.com/home";
 	

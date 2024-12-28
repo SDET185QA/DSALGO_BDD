@@ -43,7 +43,6 @@ public class GraphSteps {
 	public void user_is_on_the_graph_home_page() {
 	    LoggerLoad.info("-----User is on the Graph home page----");
 		GraphpageObject.getStarted();
-		//GraphpageObject.GraphHomeLink();
 		
 	}
 
@@ -81,16 +80,8 @@ public class GraphSteps {
 	public void user_is_on_the_graph_representation_page() {
 		LoggerLoad.info("-----User is on the Graph Representation page---");
 		GraphpageObject.getStarted();
-		//GraphpageObject.GraphHomeLink();
 		GraphpageObject.GraphRepresentationLink();
 	    
-	}
-	@Given("user is on Try Editor")
-	public void user_is_on_try_editor() {
-		LoggerLoad.info("-----User is clicking on try here button----");
-		GraphpageObject.getStarted();
-		GraphpageObject.GraphHomeLink();
-		GraphpageObject.clickTry();
 	}
 
 	@Given("User is on the {string}.")
@@ -179,14 +170,9 @@ public class GraphSteps {
 		LoggerLoad.info("-----User clicks on Practice Questions----");
 		GraphpageObject.clickPracticeQuestions();
 	}
-	@Then("user should be presented with Run results")
-	public void user_should_be_presented_with_run_results() {
-		LoggerLoad.info("-----User is viewing the Result----");
-    
-	}
-
-@Then("The User should get an alert message")
-public void the_user_should_get_an_alert_message() {
+	
+  @Then("The User should get an alert message")
+  public void the_user_should_get_an_alert_message() {
 	LoggerLoad.info("-----User gets an alert message----");
 	String actualErrorMsg = GraphpageObject.getErrorOnTryEditor("SyntaxError: bad input on line 1");
 	assertEquals(actualErrorMsg, "SyntaxError: bad input on line 1");
