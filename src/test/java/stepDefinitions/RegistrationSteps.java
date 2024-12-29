@@ -92,9 +92,11 @@ public class RegistrationSteps {
 	public void the_user_clicks_register_button_after_entering_password_and_password_confirmation_and_leaves_username_field_empty(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
 	//	ExcelReader excelReader = new ExcelReader();
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String password = data.get(rowNumber - 1).get("password");
-		String passwordConfirmation = data.get(rowNumber - 1).get("passwordConfirmation");
-		
+		String password = data.get(rowNumber - 2).get("password");
+		String passwordConfirmation = data.get(rowNumber - 2).get("passwordConfirmation");
+		System.out.println("password = " + password);
+		System.out.println("password Confirmation = " + passwordConfirmation);
+
 		pageObject.enterPassword(password);
 		pageObject.enterPasswordConf(passwordConfirmation);
 		pageObject.enterUserName("");
@@ -107,7 +109,7 @@ public class RegistrationSteps {
 	public void the_user_clicks_register_button_after_entering_username_with_other_fields_empty(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
 		
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String username = data.get(rowNumber - 1).get("username");
+		String username = data.get(rowNumber - 2).get("username");
 	
 		pageObject.enterUserName(username);
 		pageObject.enterPassword("");
@@ -126,8 +128,8 @@ public class RegistrationSteps {
 	public void the_user_clicks_register_button_after_entering_username_and_password_with_password_cofirmation_field_empty(String sheetName, int rowNumber) throws InvalidFormatException, IOException{
 		
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String username = data.get(rowNumber - 1).get("username");
-		String password = data.get(rowNumber - 1).get("password");
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
 		pageObject.enterUserName(username);
 		pageObject.enterPassword(password);
 		pageObject.enterPasswordConf("");
@@ -149,9 +151,9 @@ public class RegistrationSteps {
 	@When("The user clicks Register button after entering a username with special characters other than digits with inputs from {string} and {int}")
 	public void the_user_clicks_register_button_after_entering_a_username_with_special_characters_other_than_digits(String sheetName, int rowNumber ) throws InvalidFormatException, IOException {
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String username = data.get(rowNumber - 1).get("username");
-		String password = data.get(rowNumber - 1).get("password");
-		String passwordConfirmation = data.get(rowNumber -1).get("passwordConfirmation");
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
+		String passwordConfirmation = data.get(rowNumber -2).get("passwordConfirmation");
 		pageObject.enterUserName(username);
 		pageObject.enterPassword(password);
 		pageObject.enterPasswordConf(passwordConfirmation);
@@ -170,9 +172,9 @@ public class RegistrationSteps {
 	@When("The user clicks Register button after entering a password with numeric data and valid username with inputs from {string} and {int}")
 	public void the_user_clicks_register_button_after_entering_a_password_with_numeric_data_and_valid_username(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String username = data.get(rowNumber - 1).get("username");
-		String password = data.get(rowNumber - 1).get("password");
-		String passwordConfirmation = data.get(rowNumber -1).get("passwordConfirmation");
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
+		String passwordConfirmation = data.get(rowNumber -2).get("passwordConfirmation");
 
 	   
 	   pageObject.enterUserName(username);
@@ -186,9 +188,9 @@ public class RegistrationSteps {
 	@When("The user clicks Register button after entering different passwords in password and passwordConfirmation fields with inputs from {string} and {int}")
 	public void the_user_clicks_register_button_after_entering_different_passwords_in_password_and_password_confirmation_fields(String sheetName, int rowNumber ) throws InvalidFormatException, IOException {
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String username = data.get(rowNumber - 1).get("username");
-		String password = data.get(rowNumber - 1).get("password");
-		String passwordConfirmation = data.get(rowNumber -1).get("passwordConfirmation");
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
+		String passwordConfirmation = data.get(rowNumber -2).get("passwordConfirmation");
 
 		
 		pageObject.enterUserName(username);
@@ -218,9 +220,9 @@ public class RegistrationSteps {
 	@When("The user clicks Register button after entering username with less than eight characters with valid password and passwordConfirmation in related textboxes with inputs from {string} and {int}")
 	public void the_user_clicks_register_button_after_entering_with_username_with_less_than_eight_characters_with_valid_password_and_password_confirmation_in_related_textboxes(String sheetName,int rowNumber) throws InvalidFormatException, IOException {
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String username = data.get(rowNumber - 1).get("username");
-		String password = data.get(rowNumber - 1).get("password");
-		String passwordConfirmation = data.get(rowNumber -1).get("passwordConfirmation");
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
+		String passwordConfirmation = data.get(rowNumber -2).get("passwordConfirmation");
 
 		
 		pageObject.enterUserName(username);
@@ -239,9 +241,9 @@ public class RegistrationSteps {
 	@When("The user clicks on Register button after entering valid username, password and passwordConfirmation with less than eight characters with inputs from {string} and {int}")
 	public void the_user_clicks_on_register_button_after_entering_valid_username_and_password_with_less_than_eight_characters(String sheetName,int rowNumber) throws InvalidFormatException, IOException {
 		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
-		String username = data.get(rowNumber - 1).get("username");
-		String password = data.get(rowNumber - 1).get("password");
-		String passwordConfirmation = data.get(rowNumber -1).get("passwordConfirmation");
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
+		String passwordConfirmation = data.get(rowNumber -2).get("passwordConfirmation");
 
 		
 		
