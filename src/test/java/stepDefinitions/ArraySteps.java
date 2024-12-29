@@ -166,8 +166,9 @@ public class ArraySteps {
 	
 	@Given("User is on {string} after logged in")
 	public void user_is_on_after_logged_in(String pagename) {
-		String page_name=pagename.replaceAll("\\s+", "");
-		arraypagefactory.navigateTo(page_name);
+		arraypagefactory.clickOnarrayGetStarted();
+		arraypagefactory.clickOnarraysInPython();
+		arraypagefactory.clickOnTryHere();
         LoggerLoad.info("User is on the "+pagename + " after logged in");
 	}
 
@@ -238,8 +239,10 @@ public class ArraySteps {
     public void user_is_on_page_of_after_logged_in(String pageName1, String pageName2)
     {
         LoggerLoad.info("User is  on " +pageName1 + "  page of "+pageName2 + "after logged in ");
-        String pagename=pageName1+pageName2.replaceAll("\\s+", "");
-        arraypagefactory.navigateTo(pagename);
+        arraypagefactory.clickOnarrayGetStarted();
+		arraypagefactory.clickOnarraysInPython();
+		arraypagefactory.clickOnPraciceQuestions();
+		arraypagefactory.clickOnsearchTheArrays();
 
     }
 	
@@ -305,13 +308,46 @@ public class ArraySteps {
 
     }
 	
-///// @TestScenario29_array
+
 	@When("User clicks on Squares of a Sorted Array link")
     public void user_clicks_on_squares_of_a_sorted_array_link() {
         LoggerLoad.info("User clicks on Squares of a Sorted Array link");
         arraypagefactory.clickSquaresOfASortedArrayLink();
 
     }
+
+	@Given("User is on {string} page of Max Consecutive Ones after logged in")
+	public void user_is_on_page_of_max_consecutive_ones_after_logged_in(String string) {
+		arraypagefactory.clickOnarrayGetStarted();
+		arraypagefactory.clickOnarraysInPython();
+		arraypagefactory.clickOnPraciceQuestions();
+		arraypagefactory.clickOnmaxConsecutiveOnesButtons();
+	}
+	
+	@Given("User is on Practice page after logged in")
+	public void user_is_on_practice_page_after_logged_in() {
+		arraypagefactory.clickOnarrayGetStarted();
+		arraypagefactory.clickOnarraysInPython();
+		arraypagefactory.clickOnPraciceQuestions();
+	}
+	
+	
+		@Given("User is on {string} page of FindNumberswithEvenNumberofDigit after logged in")
+		public void user_is_on_page_of_find_numberswith_even_numberof_digit_after_logged_in(String string) {
+			arraypagefactory.clickOnarrayGetStarted();
+			arraypagefactory.clickOnarraysInPython();
+			arraypagefactory.clickOnPraciceQuestions();
+			arraypagefactory.clickFindNumbersWithEvenNumberOfDigitsLink();
+		}
+		
+		
+		@Given("User is on {string} page of Squares of a Sorted Array after logged in")
+		public void user_is_on_page_of_squares_of_a_sorted_array_after_logged_in(String string) {
+			arraypagefactory.clickOnarrayGetStarted();
+			arraypagefactory.clickOnarraysInPython();
+			arraypagefactory.clickOnPraciceQuestions();
+			arraypagefactory.clickSquaresOfASortedArrayLink();
+		}
 
 
 
