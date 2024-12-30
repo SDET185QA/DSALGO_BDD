@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import pageObjects.LoginPOF;
 
 import utilities.LoggerLoad;
-
+import utilities.Utility_Methods;
 import utilities.ConfigReader;
 
 import utilities.ExcelReader;
@@ -29,6 +29,7 @@ public class LoginSteps {
 	static String password;
 	static String message;
 	String Excelpath=ConfigReader.getexcelfilepath();
+	Utility_Methods util=new Utility_Methods();
 	
 
 	////@TestScenario_login_01  
@@ -111,9 +112,11 @@ public class LoginSteps {
 
 	///@TestScenario_login_07
 	@Given("The user is in home page and enters  email as {string} and password as {string} and in {string}")
-	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in(String username, String password, String string3) {
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in(String username, String password, String string3) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		loginpagefactory.clickOnGetstartedDataStructures();
@@ -133,9 +136,11 @@ public class LoginSteps {
 	}
 	///@TestScenario_login_08
 	@Given("The user is in home page and enters  email as {string} and password as {string} and in Array page")
-	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_array_page(String username, String password) {
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_array_page(String String1, String String2) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		loginpagefactory.clickOnGetstartedArray();
@@ -144,18 +149,22 @@ public class LoginSteps {
 	
 	///@TestScenario_login_09
 	@Given("The user is in home page and enters  email as {string} and password as {string} and in Linked List")
-	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_linked_list(String username, String password) {
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_linked_list(String String1, String String2) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		loginpagefactory.clickOnGetstartedLinkedList();
 	}
 	///@TestScenario_login_10
 	@Given("The user is in home page and enters  email as {string} and password as {string} and in Stack")
-	public void t_the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_stack(String username, String password) {
+	public void t_the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_stack(String String1, String String2) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		loginpagefactory.clickOnGetstartedStack();
@@ -163,36 +172,44 @@ public class LoginSteps {
 	
 	//@TestScenario_login_11
 	@Given("The user is in home page and enters  email as {string} and password as {string} and in Queue Page")
-	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_queue_page(String username, String password) {
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_queue_page(String String1, String String2) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		loginpagefactory.clickOnGetstartedQueue();
 	}
 	//@TestScenario_login_12
 	@Given("The user is in home page and enters  email as {string} and password as {string} and in Tree")
-	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_tree(String username, String password) {
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_tree(String String1, String String2) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		loginpagefactory.clickOnGetstartedTree();
 	}
 	//@TestScenario_login_13
 	@Given("The user is in home page and enters  email as {string} and password as {string} and in Graph page")
-	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_graph_page(String username, String password) {
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as_and_in_graph_page(String String1, String String2) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		loginpagefactory.clickOnGetstartedGraph();
 	}
     ////@TestScenario_login_14
 	@Given("The user is in home page and enters  email as {string} and password as {string}")
-	public void the_user_is_in_home_page_and_enters_email_as_and_password_as(String username, String password) {
+	public void the_user_is_in_home_page_and_enters_email_as_and_password_as(String String1, String String2) throws InvalidFormatException, IOException {
 		loginpagefactory.clickOnGetstarted();
 		loginpagefactory.clickOnSignin();
+		username = util.get_username();
+		password = util.get_password();
 		loginpagefactory.enter_login_credentails(username,password);
 		loginpagefactory.clickonLogin();
 		

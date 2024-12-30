@@ -64,6 +64,23 @@ public class Utility_Methods {
         String code = testdata.get(rownumber).get("PythonCode");
         return code;
     }
+    
+    public String get_username() throws InvalidFormatException, IOException {
+    	ExcelReader reader = new ExcelReader();
+		String sheetname = "SignIn";
+
+		List<Map<String, String>> testdata = reader.getData(ExcelPath,sheetname );
+		String username = testdata.get(2).get("username");
+		return username;
+    }
+    public String get_password() throws InvalidFormatException, IOException {
+    	ExcelReader reader = new ExcelReader();
+		String sheetname = "SignIn";
+
+		List<Map<String, String>> testdata = reader.getData(ExcelPath,sheetname );
+		String password = testdata.get(2).get("password");
+		return password;
+    }
 
 
 
