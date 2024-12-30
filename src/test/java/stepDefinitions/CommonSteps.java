@@ -1,5 +1,7 @@
 package stepDefinitions;
 
+import org.testng.Assert;
+
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -26,7 +28,10 @@ public class CommonSteps {
 
 	@Then("The user should land in homepage")
 	public void the_user_should_land_in_homepage() {
+		String expectedTitle = "NumpyNinja";
 		loginpagefactory.clickonLogin();
+		String actualTitle = loginpagefactory.getTitleHomePage(expectedTitle);
+		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 
 
