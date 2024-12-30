@@ -106,8 +106,11 @@ public class LoginSteps {
   ////@TestScenario_login_05
 	@Then("The user should land in Data Structure Home Page with message {string}")
 	public void the_user_should_land_in_data_structure_home_page_with_message(String string) {
+		String expectedTitle = "NumpyNinja";
 		loginpagefactory.clickonLogin();
 		LoggerLoad.info("The user succesfully clicked on signin button");
+		String actualTitle = loginpagefactory.getTitleHomePage(expectedTitle);
+		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 
 	///@TestScenario_login_07
@@ -235,7 +238,10 @@ public class LoginSteps {
     //@TestScenario_login_15
 	@Then("click login button")
 	public void click_login_button() {
+		String expectedTitle = "Login";
 		loginpagefactory.clickOnSignin();
+		String actualTitle = loginpagefactory.getTitleHomePage(expectedTitle);
+		Assert.assertEquals(actualTitle, expectedTitle);
 	}
 	/// @TestScenario_login_03
 	@When("The user enter invalid {string} and {string}")
