@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -34,9 +35,11 @@ public class GraphSteps {
 		GraphpageObject.getStarted();
 	}
 
-	@Then("User should be redirected to the Graph home page clicking on Get Started")
-	public void user_should_be_redirected_to_the_graph_home_page_clicking_on_get_started() {
-		LoggerLoad.info("-----User is redirected to the Graph home page ----");
+	@Then("User should be redirected to the {string} clicking on Get Started")
+	public void user_should_be_redirected_to_the_graph_home_page_clicking_on_get_started(String ExpectedPageTitle) {
+		String actualPageTitle =  GraphpageObject.getpageTitle();
+		LoggerLoad.info("User Successfully lands on the Graph home page ----");
+		 Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Graph home page");
 	}
 
 	@Given("user is on the Graph home Page")
@@ -53,9 +56,11 @@ public class GraphSteps {
 		
 	}
 
-	@Then("user should be redirected to Graph page from  Graph home Page")
-	public void user_should_be_redirected_to_graph_page_from_graph_home_page() {
-		LoggerLoad.info("-----User is redirected to the Graph page from Graph home page ----");
+	@Then("user should be redirected to {string} from  Graph home Page")
+	public void user_should_be_redirected_to_graph_page_from_graph_home_page(String ExpectedPageTitle) {
+		String actualPageTitle =  GraphpageObject.getpageTitle();
+		LoggerLoad.info("User successfully lands on the Graph page from Graph home page ----");
+		Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Graph page from Graph home page");
 	}
 	
 	@Given("user is on the Graph Page")
@@ -71,9 +76,11 @@ public class GraphSteps {
 		GraphpageObject.GraphRepresentationLink();
 	}
 
-	@Then("user should be redirected to the Graph Representation Page")
-	public void user_should_be_redirected_to_the_graph_representation_page() {
-		LoggerLoad.info("-----User is redirected to the Graph Representation Page ----");
+	@Then("user should be redirected to the {string} Page")
+	public void user_should_be_redirected_to_the_graph_representation_page(String ExpectedPageTitle) {
+		String actualPageTitle =  GraphpageObject.getpageTitle();
+		LoggerLoad.info("User sucessfully lands on the Graph Representation Page ----");
+		Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Graph Representation Page");
 	}
 
 	@Given("user is on the Graph Representation Page")
@@ -170,6 +177,14 @@ public class GraphSteps {
 		LoggerLoad.info("-----User clicks on Practice Questions----");
 		GraphpageObject.clickPracticeQuestions();
 	}
+	
+	@Then("User should be redirected to the {string} Page with list of Questions Page")
+	public void user_should_be_redirected_to_the_practice_questions_page_with_list_of_questions_page(String ExpectedPageTitle) {
+		String actualPageTitle = GraphpageObject.getpageTitle();
+		LoggerLoad.info("User successfully lands on the Practice Question page----");
+		Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Practice Question page");
+	    } 
+
 	
   @Then("The User should get an alert message")
   public void the_user_should_get_an_alert_message() {

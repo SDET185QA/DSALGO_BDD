@@ -10,12 +10,12 @@ Background: The user is logged in DS Algo portal
 Scenario: User is able to navigate to Graph home page clicking on Get Started 
     Given The user is on the Home page	
 		When User clicks the Get Started button in Graph 
-		Then User should be redirected to the Graph home page clicking on Get Started
+		Then User should be redirected to the "Graph" clicking on Get Started
 		
 Scenario: User is able to navigate to Graph page from  Graph home Page 
     Given user is on the Graph home Page
     When user clicks Graph
-    Then user should be redirected to Graph page from  Graph home Page		
+    Then user should be redirected to "Graph" from  Graph home Page		
     
 Scenario: User is able to navigate to try Editor on Graph Page 
     Given user is on the Graph Page
@@ -26,7 +26,7 @@ Scenario: User is able to navigate to try Editor on Graph Page
 Scenario:  User is able to navigate to the Graph Representation page
     Given user is on the Graph Page 
     When user clicks on the Graph Representation link
-    Then user should be redirected to the Graph Representation Page
+    Then user should be redirected to the "Graph Representations" Page
     
 Scenario: User is able to navigate to try Editor on Graph Representation Page 
     Given user is on the Graph Representation Page
@@ -36,7 +36,7 @@ Scenario: User is able to navigate to try Editor on Graph Representation Page
 Scenario: User is able to navigate to Practice Questions 
     Given User is on the Graph Representations
     When user clicks Practice Questions  link
-    Then User should be directed to the Practice Question Page with list of Questions Page
+    Then User should be redirected to the "Practice Questions" Page with list of Questions Page
     
 Scenario Outline: Validation of valid python code in TryEditor page
     Given User is on the "Try Editor Page".
