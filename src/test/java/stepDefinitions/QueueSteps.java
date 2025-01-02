@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.testng.Assert;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -32,36 +33,41 @@ public void the_user_is_on_the_home_page() {
 
 @When("User clicks the Get Started button in Queue")
 public void user_clicks_the_get_started_button_in_queue() {
-	 LoggerLoad.info("-----Click on get Started button----");
+	 LoggerLoad.info("Click on get Started button");
 	 QueuePageObject.getStarted_Q();
 }
 
-@Then("User should be redirected to the Queue page clicking on Get Started")
-public void user_should_be_redirected_to_the_queue_page_clicking_on_get_started() {
-	 LoggerLoad.info("-----User is redirected to the Queue page----");
+@Then("User should be redirected to the {string} page clicking on Get Started")
+public void user_should_be_redirected_to_the_queue_page_clicking_on_get_started(String ExpectedPageTitle ) {
+	String actualPageTitle = QueuePageObject.getpageTitle();
+	 LoggerLoad.info("User successfully lands on the Queue page");
+	 Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Queue page");
 }
+
 
 @Given("User is on the Queue Page")
 public void user_is_on_the_queue_page() {
-	 LoggerLoad.info("-----User is on the Queue Page----");
+	 LoggerLoad.info("User is on the Queue Page");
 	 QueuePageObject.getStarted_Q();  
 }
 
 @When("user clicks Implementation of Queue in python link")
 public void user_clicks_implementation_of_queue_in_python_link() {
-	 LoggerLoad.info("-----User is clicking on Implementation of Queue ----");
+	 LoggerLoad.info("User is clicking on Implementation of Queue");
 	 QueuePageObject.ImplementationofQueueinPythonLink();
 }
 
-@Then("User should be redirected to the Implementation of queue in Python Page")
-public void user_should_be_redirected_to_the_implementation_of_queue_in_python_page() {
-	 LoggerLoad.info("-----User is redirected to Implementation of queue----");
+@Then("User should be redirected to the {string} Page")
+public void user_should_be_redirected_to_the_implementation_of_queue_in_python_page(String ExpectedPageTitle ) {
+	String actualPageTitle = QueuePageObject.getpageTitle();
+	 LoggerLoad.info("User successfully Lands on the Implementation of queue in Python page");
+	 Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User redirected to  the Implementation of queue in Python page");
 	
 }
 
 @Given("User is on the Implementation of Queue in python link")
 public void user_is_on_the_implementation_of_queue_in_python_link() {
-	LoggerLoad.info("-----User is on the Implementation of Queue----");
+	LoggerLoad.info("User is on the Implementation of Queue");
 	QueuePageObject.getStarted_Q();
 	QueuePageObject.ImplementationofQueueinPythonLink();
 	
@@ -69,17 +75,15 @@ public void user_is_on_the_implementation_of_queue_in_python_link() {
 
 @When("user clicks try here button")
 public void user_clicks_try_here_button() {
-	LoggerLoad.info("-----User is clicking on try here button----");
+	LoggerLoad.info("User is clicking on try here button");
 	QueuePageObject.clickTry();
 }
 
 
 @Then("user should be redirected to a page having an tryEditor with a Run button to test")
 public void user_should_be_redirected_to_a_page_having_an_try_editor_with_a_run_button_to_test() {
-	LoggerLoad.info("-----User is redirected to the page having tryEditor----");
-	
-
-}
+	LoggerLoad.info("User successfully lands to the tryEditor----");
+	 }
 
 @Given("user is on Try Editor page")
 public void user_is_on_try_editor_page() {
@@ -156,10 +160,13 @@ public void user_clicks_implementation_using_collection_deque_link() {
 	QueuePageObject.ImplementationUsingCollectiondeQueueLink();
 }
 
-@Then("User should be redirected to the Implementation using Collection.deque Page")
-public void user_should_be_redirected_to_the_implementation_using_collection_deque_page() {
-	LoggerLoad.info("-----User is redirected to the Implementation using Collection.deque Page ----");	
-}
+//@Then("User should be redirected to the {string} Page")
+//public void user_should_be_redirected_to_the_implementation_using_collection_deque_page( String ExpectedPageTitle) {
+//	String actualPageTitle = QueuePageObject.getpageTitle();
+//	LoggerLoad.info("User successfully lands on  the Implementation using Collection.deque Page ----");
+//	Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Implementation using Collection.deque Page  ");
+//	
+//}
 
 @Given("User is on the Implementation using Collection.deque link")
 public void user_is_on_the_implementation_using_collection_deque_link() {
@@ -173,11 +180,13 @@ public void user_clicks_implementation_using_array_page_link() {
 	LoggerLoad.info("-----User clicking on Implementation using array page----");
 	QueuePageObject.ImplementationUsingArray();	
 }
+//@Then("User should be redirected to the {string} page")
+//public void user_should_be_redirected_to_the_implementation_using_array_page(String ExpectedPageTitle) {
+//	String actualPageTitle = QueuePageObject.getpageTitle();
+//	LoggerLoad.info("-----User successfully lands on the Implementation using array page----");
+//	Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Implementation using array page");
+//  }  
 
-@Then("User should be redirected to the Implementation using array page")
-public void user_should_be_redirected_to_the_implementation_using_array_page() {
-	LoggerLoad.info("-----User is redirected to the Implementation using array page----");
-    }  
 
 @When("user clicks  Queue Operations page link")
 public void user_clicks_queue_operations_page_link() {
@@ -185,9 +194,11 @@ public void user_clicks_queue_operations_page_link() {
 	QueuePageObject.QueueOperations();
 }
 
-@Then("User should be directed to the Queue Operations page")
-public void user_should_be_directed_to_the_queue_operations_page() {
-	LoggerLoad.info("-----User is redirected to the Queue Operations----");
+@Then("User should be directed to the {string} page")
+public void user_should_be_directed_to_the_queue_operations_page(String ExpectedPageTitle) {
+	String actualPageTitle = QueuePageObject.getpageTitle();
+	LoggerLoad.info("-----User successfully lands on the Queue Operations----");
+	Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Queue Operations");
     } 
 
  @Given("User is on the Queue Operation page")
@@ -204,9 +215,11 @@ public void user_clicks_practice_questions_link() {
 	QueuePageObject.clickPracticeQuestions();
 }
 
-@Then("User should be directed to the Practice Question Page with list of Questions Page")
-public void user_should_be_directed_to_the_practice_question_page_with_list_of_questions_page() {
-	LoggerLoad.info("-----User is redirected to the Practice Question page----");
+@Then("User should be directed to the {string} Page with list of Questions Page")
+public void user_should_be_directed_to_the_practice_questions_page_with_list_of_questions_page(String ExpectedPageTitle) {
+	String actualPageTitle = QueuePageObject.getpageTitle();
+	LoggerLoad.info("User successfully lands on the Practice Question page----");
+	Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Practice Question page");
     } 
 
 }

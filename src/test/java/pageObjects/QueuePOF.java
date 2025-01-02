@@ -75,6 +75,11 @@ public QueuePOF() {
 		{
 		getStarted.click();
 		}
+		public String getpageTitle() {
+			String actualPageTitle = driver.getTitle();
+			LoggerLoad.info("The tile of Queue page is "+ actualPageTitle);
+			return actualPageTitle;
+		}
 
 		public void ImplementationofQueueinPythonLink() {
 			Implementation_of_queue.click();

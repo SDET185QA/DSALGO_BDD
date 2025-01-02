@@ -64,6 +64,12 @@ public class GraphPOF {
   		{
   		getStarted_btn.click();
   		}
+  		public String getpageTitle() {
+			String actualPageTitle = driver.getTitle();
+			LoggerLoad.info("The tile of Queue page is "+ actualPageTitle);
+			return actualPageTitle;
+		}
+
 
   		public void GraphHomeLink() {
   		Graph_home_link.click();
