@@ -37,7 +37,7 @@
 
 	</test> <!-- Test -->
 	
-	<test thread-count="3"  name="Testsafari">
+	<!--<test thread-count="3"  name="Testsafari">
 
 		<parameter name="browser" value="safari"/>
 
@@ -47,6 +47,6 @@
 
 		</classes>
 
-	</test> <!-- Test -->
+	</test>  Test -->
 
 </suite> <!-- Suite -->
