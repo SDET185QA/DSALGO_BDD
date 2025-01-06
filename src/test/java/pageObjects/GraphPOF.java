@@ -93,12 +93,6 @@ public class GraphPOF {
   		public String getErrorOnTryEditor(String message) {
 			return message;
 		}
-  		public void  navigateTo(String pagename)
-  	    {
-  	        
-  			 String GraphUrlName= ConfigReader.geturl(pagename);
-  		        driver.get(GraphUrlName);
-  	    }
   		public void fetchPythonCode(String PythonCode) {
   	        System.out.println("Editor Input: "+editorInput);
   	        util.waitForElement(answerform);

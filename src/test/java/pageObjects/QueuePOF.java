@@ -48,10 +48,7 @@ public QueuePOF() {
 				
 		@FindBy (xpath="//pre[@id='output']") 
 		private WebElement output;
-		
-//		@FindBy(xpath="//button[text()='Run']")
-//	    private WebElement  RunImplementationOfQueue;
-//		
+			
 		@FindBy(xpath="//a[text()='Implementation using collections.deque']")//Implementation Using collections dequeue
 	    private WebElement Implementation_Using_Collections_deque;
 				
@@ -87,9 +84,6 @@ public QueuePOF() {
 		public void clickTry() {
 			Try.click();
 		}
-//		public void Input(String pythonCode) {
-//			Input.sendKeys(pythonCode);
-//		}
 		public void Run_btn_Queue() {
 			Run_btn_Queue.click();
 		}
@@ -120,12 +114,6 @@ public QueuePOF() {
 		public String getErrorOnTryEditor(String message) {
 			return message;
 		}
-		public void  navigateTo(String pagename)
-  	    {
-  	        
-  			 String GraphUrlName= ConfigReader.geturl(pagename);
-  		        driver.get(GraphUrlName);
-  	    }
   		public void fetchPythonCode(String PythonCode) {
   	        System.out.println("Editor Input: "+editorInput);
   	        util.waitForElement(answerform);
