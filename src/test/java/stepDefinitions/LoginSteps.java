@@ -258,5 +258,33 @@ public class LoginSteps {
 		String message = loginpagefactory.validate_login_with_blank_credentials(validationMessage,username);
 		Assert.assertEquals(validationMessage, message);
 	}
+	
+	//// @TestScenario_login_16
+	@When("The user clicks login to DsAlgo application for valid login credentails with  {string} and {int}")
+	public void the_user_clicks_login_to_ds_algo_application_for_valid_login_credentails_with_and(String sheetname, Integer rownumber)
+			throws InvalidFormatException, IOException {
+		ExcelReader reader = new ExcelReader();
+		List<Map<String, String>> testdata = reader.getData(Excelpath, sheetname);
+		username = testdata.get(rownumber).get("username");
+		password = testdata.get(rownumber).get("password");
+		LoggerLoad.info("User Enter username as \" " + username + " \"and Password as \" " + password + "\" ");
+		if (username != null || password != null)
+			loginpagefactory.enter_login_credentails(username, password);
+			loginpagefactory.clickonLogin();
+
+	}
+	
+////@TestScenario_login_16
+	@Then("The user should land in Data Structure Home Page with message from the row {string} and {int}")
+	public void the_user_should_land_in_data_structure_home_page_with_message_from_the_row_and(String sheetname, Integer rownumber ) throws InvalidFormatException, IOException{
+	
+		ExcelReader reader = new ExcelReader();
+		List<Map<String, String>> testdata = reader.getData(Excelpath, sheetname);
+		LoggerLoad.info("The user succesfully clicked on signin button");
+		String expectedTitle = testdata.get(rownumber).get("expectedmessage");
+		String actualTitle = loginpagefactory.siginPageTitle();		
+		Assert.assertEquals(actualTitle, expectedTitle);
+	}
+	
 		
 }

@@ -36,7 +36,7 @@ public class LoginPOF {
 	    private WebElement signoutButton;
 		
 		@FindBy(xpath = "//div[@class='alert alert-primary']")
-	    private WebElement logoutalert;
+	    private WebElement alertmessage;
 		
 		
 		@FindBy(xpath = "//a[@href='data-structures-introduction']")
@@ -164,7 +164,7 @@ public class LoginPOF {
 						}
 				
 				public String getlogoutAlert(String expectedLogoutMessage) {
-					String logoutMessage = logoutalert.getText();
+					String logoutMessage = alertmessage.getText();
 					LoggerLoad.info("The alert message is " +logoutMessage);
 					return logoutMessage;
 				}
@@ -213,6 +213,13 @@ public class LoginPOF {
 					getStartedGraph.click();
 					
 				}
+				public String siginPageTitle() {
+					
+					String succesmsg=alertmessage.getText();
+					return succesmsg;
+					
+									
+								}
 
 
 }
