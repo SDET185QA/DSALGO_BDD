@@ -52,10 +52,10 @@ Scenario: User is able to navigate to Practice Questions
     Then User should be directed to the "Practice Questions" Page with list of Questions Page 
        
 Scenario Outline: Validation of valid python code in TryEditor page
-    Given User is on the "Try Editor Page".
-    When User should enter Valid Python code from sheet "<SheetName>" and <RowNumber>
-    And User clicks on Run 
-    Then User should see the  valid output
+    Given Users is on "Try Editor Page".
+    When User should enter valid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on Run.
+    Then User should see the valid output
 
     Examples: 
       | SheetName  | RowNumber |
@@ -63,10 +63,10 @@ Scenario Outline: Validation of valid python code in TryEditor page
       
       
  Scenario Outline: Validation of error message for invalid python code in TryEditor page
-    Given User is on the "Try Editor Page". 
-    When User should enter Invalid Python code from sheet "<SheetName>" and <RowNumber>
-    And User clicks on  the Run 
-    Then User should be able to see the Error message
+    Given User is on the "Try Editor Page" 
+    When User should enter InValid Python code from sheet "<SheetName>" and <RowNumber>
+    And User clicks on the Run. 
+    Then User should be able to see the Error messages
 
     Examples: 
       | SheetName  | RowNumber |

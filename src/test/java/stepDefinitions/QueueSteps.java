@@ -85,8 +85,8 @@ public void user_should_be_redirected_to_a_page_having_an_try_editor_with_a_run_
 	LoggerLoad.info("User successfully lands to the tryEditor----");
 	 }
 
-@Given("user is on Try Editor page")
-public void user_is_on_try_editor_page() {
+@Given("Users is on {string}.")
+public void users_is_on(String string){
 	LoggerLoad.info("-----User on Try Editor----");
 	QueuePageObject.getStarted_Q();
 	QueuePageObject.ImplementationofQueueinPythonLink();
@@ -94,7 +94,7 @@ public void user_is_on_try_editor_page() {
 
 }
 
-@When("User should enter Valid Python code from sheet {string} and {int}")
+@When("User should enter valid Python code from sheet {string} and {int}")
 public void user_should_enter_valid_python_code_from_sheet_and(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException {
 	LoggerLoad.info("User is on Try Editor page");
     ExcelReader reader = new ExcelReader();
@@ -109,12 +109,12 @@ public void user_should_enter_valid_python_code_from_sheet_and(String SheetName,
     if ( PythonCode!= null )
     	QueuePageObject.fetchPythonCode(PythonCode);
 }
-@When("User clicks on Run")
+@When("User clicks on Run.")
 public void user_clicks_on_run() {
 	LoggerLoad.info("User clicks on Run Button");
 	QueuePageObject.Run_btn_Queue();
 }
-@Then("User should see the  valid output")
+@Then("User should see the valid output")
 public void user_should_see_the_valid_output() {
 	LoggerLoad.info("User gets the Result of entered Python Code");
     String fetchOutput = QueuePageObject.fetchOutput();
@@ -123,8 +123,17 @@ public void user_should_see_the_valid_output() {
     assertEquals(fetchOutput,ExpectedResult,"Expected and actual result  matches");
 }
 
+@Given("User is on the {string}")
+public void user_is_on (String string) {
+	LoggerLoad.info("-----User on Try Editor----");
+	QueuePageObject.getStarted_Q();
+	QueuePageObject.ImplementationofQueueinPythonLink();
+	QueuePageObject.clickTry();
+	
+}
 
-@When("User should enter Invalid Python code from sheet {string} and {int}")
+
+@When("User should enter InValid Python code from sheet {string} and {int}")
 public void user_should_enter_invalid_python_code_from_sheet_and(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException {
 	LoggerLoad.info("User is on Try Editor page");
     ExcelReader reader = new ExcelReader();
@@ -139,12 +148,12 @@ public void user_should_enter_invalid_python_code_from_sheet_and(String SheetNam
     	QueuePageObject.fetchPythonCode(PythonCode);
 
 }
-@When("User clicks on  the Run")
+@When("User clicks on the Run.")
 public void user_clicks_on_the_run() {
 	LoggerLoad.info("User clicks on Run Button");
 	QueuePageObject.Run_btn_Queue();
 }
-@Then("User should be able to see the Error message")
+@Then("User should be able to see the Error messages")
 public void user_should_be_able_to_see_the_error_message() {
 	 LoggerLoad.info("User gets the error message in an Alert");
      String actualError = QueuePageObject.fetchErrorMessage();
@@ -160,13 +169,6 @@ public void user_clicks_implementation_using_collection_deque_link() {
 	QueuePageObject.ImplementationUsingCollectiondeQueueLink();
 }
 
-//@Then("User should be redirected to the {string} Page")
-//public void user_should_be_redirected_to_the_implementation_using_collection_deque_page( String ExpectedPageTitle) {
-//	String actualPageTitle = QueuePageObject.getpageTitle();
-//	LoggerLoad.info("User successfully lands on  the Implementation using Collection.deque Page ----");
-//	Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Implementation using Collection.deque Page  ");
-//	
-//}
 
 @Given("User is on the Implementation using Collection.deque link")
 public void user_is_on_the_implementation_using_collection_deque_link() {
@@ -179,13 +181,7 @@ public void user_is_on_the_implementation_using_collection_deque_link() {
 public void user_clicks_implementation_using_array_page_link() {
 	LoggerLoad.info("-----User clicking on Implementation using array page----");
 	QueuePageObject.ImplementationUsingArray();	
-}
-//@Then("User should be redirected to the {string} page")
-//public void user_should_be_redirected_to_the_implementation_using_array_page(String ExpectedPageTitle) {
-//	String actualPageTitle = QueuePageObject.getpageTitle();
-//	LoggerLoad.info("-----User successfully lands on the Implementation using array page----");
-//	Assert.assertEquals(ExpectedPageTitle, actualPageTitle,"User is redirected to the Implementation using array page");
-//  }  
+}  
 
 
 @When("user clicks  Queue Operations page link")
