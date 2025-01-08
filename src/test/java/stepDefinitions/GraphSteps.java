@@ -90,13 +90,15 @@ public class GraphSteps {
 		GraphpageObject.GraphRepresentationLink();
 	    
 	}
-
+	
 	@Given("User is on the {string}.")
-	public void user_is_on_the(String pagename) {
-		String page_name=pagename.replaceAll("\\s+", "");
-		GraphpageObject.navigateTo(page_name);
-        LoggerLoad.info("User is on the "+pagename + " after logged in");
+	public void user_is_on_the(String string) {
+		LoggerLoad.info("-----User is on the ---");
+		GraphpageObject.getStarted();
+		GraphpageObject.GraphRepresentationLink();
+		GraphpageObject.clickTry();
 	}
+
 	
 	@When("User enters Valid Python code from sheet {string} and {int}")
 	public void user_enters_valid_python_code_from_sheet_and(String SheetName, Integer RowNumber) throws InvalidFormatException, IOException {
