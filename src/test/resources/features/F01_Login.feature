@@ -25,13 +25,13 @@ Feature: Login to DS-ALGO Application and validate login page with different sce
   @TestScenario_login_04
   Scenario: To verify SignIn with username only
     Given The user is on the DS Algo Login Page
-    When User clicks on login button with username as "SDET185"
+    When User clicks on login button with username as "*****"
     Then User verify the message at password as "Please fill out this field."
 
   @TestScenario_login_05
   Scenario: To verify SignIn with password only
     Given The user is on the DS Algo Login Page
-    When User clicks on login button with password as "@SDET!*%"
+    When User clicks on login button with password as "******"
     Then User verify the message at username as "Please fill out this field."
 
   @TestScenario_login_06
@@ -101,3 +101,15 @@ Feature: Login to DS-ALGO Application and validate login page with different sce
       | Sheetname | RowNumber |
       | SignIn    |         0 |
       | SignIn    |         1 |
+      
+         Scenario: Verify that user is able to land on Login Page 
+  @TestScenario_login_16
+  
+  Scenario Outline: Verify that user is able to land on Login Page with valid credentials from "<Sheetname>" and <RowNumber>
+    Given The user is on the DS Algo Login Page 
+    When  The user clicks login to DsAlgo application for valid login credentails with  "<Sheetname>" and <RowNumber> 
+    
+    Then The user should land in Data Structure Home Page with message from the row "<Sheetname>" and <RowNumber>
+     Examples: 
+      | Sheetname | RowNumber |
+      | SignIn    |         2 |
