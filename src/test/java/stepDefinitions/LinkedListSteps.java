@@ -142,6 +142,7 @@ public class LinkedListSteps {
 	// Scenario 6 Verify If User is able to execute the valid python code in Try Editor
 	@When("The user enters {string} in try editor")
 	public void the_user_enters_code_in_try_editor(String code) {
+		tryEditorPOF.navigateToTryEditorPage(driver);
 	     tryEditorPOF.executeCode(code);
 	}
 	

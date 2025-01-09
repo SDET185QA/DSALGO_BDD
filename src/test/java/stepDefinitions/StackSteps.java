@@ -3,21 +3,45 @@ package stepDefinitions;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pageObjects.HomePagePOF;
+import pageObjects.LoginPOF;
 import pageObjects.StackPOF;
 import pageObjects.TryEditorPOF;
+import utilities.ConfigReader;
+import utilities.ExcelReader;
 import webDriverManager.DriverFactory;
 
 public class StackSteps {
 	WebDriver driver = DriverFactory.getDriver();
 	StackPOF stackPOF= new StackPOF();
 	TryEditorPOF tryEditorPOF = new TryEditorPOF();
+	ExcelReader excelReader = new ExcelReader();
+	LoginPOF loginPOF = new LoginPOF();
+	HomePagePOF homepagePOF = new HomePagePOF();
 	
+//	@Given ("The user logged in to dsAlgo Portal with credentials from {string} and row {int}")
+//	public void the_user_logged_in_to_dsalgo_portal_and_should_be_in_linkedlist_page(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+//		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+//		String username = data.get(rowNumber - 2).get("username");
+//		String password = data.get(rowNumber - 2).get("password");
+//		
+//		homepagePOF.getstarted_btn();
+//		loginPOF.clickOnSignin();
+//		loginPOF.enter_login_credentails(username, password);
+//		loginPOF.clickonLogin();
+//
+//	}
 
 //Scenario 1
 //	@When("The user clicks on Get Started under the Stack")
@@ -46,6 +70,7 @@ public class StackSteps {
 //Scenario  Verify the user is able to view the Operations in Stack
 	@Given("The user is on Stack page")
 	public void the_user_is_on_stack_page() {
+	  homepagePOF.getStartedhome("Stack");	
 	  stackPOF.navigateToStackPage(driver);
 	}
 
@@ -116,8 +141,11 @@ public class StackSteps {
 		assertEquals(actualUrl, "https://dsportalapp.herokuapp.com/tryEditor");
 	}
 //Scenario: Verify the user is able to view the error message without entering code and click on Run button on Try Editor Page
-	@Given("The user is on Try Editor Page")
+//	@Given("The user is on Try Editor Page")
+	@And ("The user is on Try Editor Page")
 	public void the_user_is_on_try_editor_page() {
+		stackPOF.clickOnOperationsInStack();
+		stackPOF.clickOnTryHereOnSubPage();
 		tryEditorPOF.navigateToTryEditorPage(driver);
 	}
 

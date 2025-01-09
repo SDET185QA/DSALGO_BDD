@@ -76,32 +76,8 @@ public class ConfigReader {
 			throw new RuntimeException("browser not specified in the Configuration.properties file.");
 	}
 	
-	public static String getLinkedListUrl() {
-		String linkedListPageUrl = properties.getProperty("linkedListPageUrl");
-		System.out.println(linkedListPageUrl);
-		if (linkedListPageUrl != null)
-			return linkedListPageUrl;
-		else
-			throw new RuntimeException("linkedListPageUrl not specified in the Configuration.properties file.");
-	}
 
-	public static String getLinkedListIntroUrl() {
-		String linkedListIntroPageUrl = properties.getProperty("linkedListIntroPageUrl");
-		System.out.println(linkedListIntroPageUrl);
-		if (linkedListIntroPageUrl != null)
-			return linkedListIntroPageUrl;
-		else
-			throw new RuntimeException("linkedListIntroPageUrl not specified in the Configuration.properties file.");
-	}
 	
-	public static String getTryEditorPageUrl() {
-		String tryEditorPageUrl = properties.getProperty("TryEditorPage");
-		System.out.println(tryEditorPageUrl);
-		if (tryEditorPageUrl != null)
-			return tryEditorPageUrl;
-		else
-			throw new RuntimeException("tryEditorPageUrl not specified in the Configuration.properties file.");
-	}
 	
 	public static String getexcelfilepath() {
         String excelfilelpath = properties.getProperty("excelFilePath");
@@ -120,14 +96,6 @@ public class ConfigReader {
             throw new RuntimeException(pagename + " url not specified in the Configuration.properties file.");
     }
 	
-	public static String getStackPageUrl() {
-		String stackPageUrl = properties.getProperty("stackPageUrl");
-		System.out.println(stackPageUrl);
-		if (stackPageUrl != null)
-			return stackPageUrl;
-		else
-			throw new RuntimeException("getStackPageUrl not specified in the Configuration.properties file.");
-	}
 
 }
 

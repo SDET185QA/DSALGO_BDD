@@ -13,7 +13,6 @@ import utilities.ConfigReader;
 public class StackPOF {
 	
 	WebDriver driver;
-	public static String  stackPageUrl = ConfigReader.getStackPageUrl();
 
 	@FindBy (xpath = "//a[@href=\"operations-in-stack\"]")
 	WebElement operationsInStack;		//Click on Operations in Stack link
@@ -26,7 +25,7 @@ public class StackPOF {
 	
 	public void navigateToStackPage(WebDriver WebDriver) {
 		driver = WebDriver;
-		driver.get(stackPageUrl);
+//		driver.get(stackPageUrl);
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		PageFactory.initElements(driver,this);
 		}
