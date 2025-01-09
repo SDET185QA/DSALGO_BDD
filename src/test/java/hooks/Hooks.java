@@ -23,8 +23,8 @@ public class Hooks {
 	
 	@Before
 	public void before() throws Throwable {
-		
-		String browser = Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");	
+						
+		String browser = Reporter.getCurrentTestResult() == null ? null : Reporter.getCurrentTestResult().getTestContext().getCurrentXmlTest().getParameter("browser");	
 		if (browser==null) {
 			
 			driverfactory = new DriverFactory();

@@ -1,6 +1,7 @@
 package pageObjects;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +16,6 @@ import utilities.ConfigReader;
 public class LinkedListIntroPOF {
 	
 	WebDriver driver;
-	public static String linkedListIntroPageUrl = ConfigReader.getLinkedListIntroUrl();
 
 	@FindBy (xpath = "//a[@href=\"/tryEditor\"]")
 	WebElement tryHereClickBtn;			//Click on try here button
@@ -28,12 +28,12 @@ public class LinkedListIntroPOF {
 	}
 	
 	public void practiceQns() {
+		driver.manage().timeouts().implicitlyWait(50, TimeUnit.SECONDS);
 		practiceQnsLink.click();
 	}
 
 	public void navigateToLinkedListIntroPage(WebDriver webDriver) {
 		driver = webDriver;
-		driver.get(linkedListIntroPageUrl);
 		PageFactory.initElements(driver,this);
 	}
 	

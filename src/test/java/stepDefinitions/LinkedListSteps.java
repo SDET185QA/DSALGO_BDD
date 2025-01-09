@@ -5,10 +5,18 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pageObjects.HomePagePOF;
 import pageObjects.LinkedListIntroPOF;
 import pageObjects.LinkedListPOF;
+import pageObjects.LoginPOF;
 import pageObjects.TryEditorPOF;
+import utilities.ConfigReader;
+import utilities.ExcelReader;
 import webDriverManager.DriverFactory;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -16,6 +24,7 @@ import static org.testng.Assert.assertNotEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,6 +36,22 @@ public class LinkedListSteps {
 	LinkedListPOF pageObject = new LinkedListPOF();
 	LinkedListIntroPOF linkedListIntroPOF = new LinkedListIntroPOF();
 	TryEditorPOF tryEditorPOF = new TryEditorPOF();
+	LoginPOF loginPOF = new LoginPOF();
+	HomePagePOF homepagePOF = new HomePagePOF();
+	ExcelReader excelReader = new ExcelReader();
+
+	
+	@Given ("The user logged in to dsAlgo Portal with credentials from {string} and row {int}")
+	public void the_user_logged_in_to_dsalgo_portal_and_should_be_in_linkedlist_page(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
+		
+		homepagePOF.getstarted_btn();
+		loginPOF.clickOnSignin();
+		loginPOF.enter_login_credentails(username, password);
+		loginPOF.clickonLogin();
+	}
 	
 	//Commenting these for time being
 	//Scenario 1
@@ -65,8 +90,10 @@ public class LinkedListSteps {
 	//Scenario 3 Verify the user is able to view the Introduction page
 	@Given("The user is on the Linked list page")
 	public void the_user_is_on_the_linked_list_page() {
+		homepagePOF.getStartedhome("Linked List");
 		pageObject.navigateToLinkedListPage(driver);
 	}
+	
 	@When("The user clicks on Introduction link")
 	public void the_user_clicks_on_introduction_link() {
 		pageObject.clickOnIntro();
@@ -78,9 +105,12 @@ public class LinkedListSteps {
 		assertEquals(actualurl,"https://dsportalapp.herokuapp.com/linked-list/introduction/");
 	}
 	//Scenario 4 Validiation of try editor page open
-	@Given("The user is on the Introduction page")
+//	@Given("The user is on the Introduction page")
+	@And ("The user is on the Introduction page")
 	public void the_user_is_on_the_introduction_page() {
+		pageObject.clickOnIntro();
 		linkedListIntroPOF.navigateToLinkedListIntroPage(driver);
+		
 	}
 	
 	@Then("The user should land on try editor page")
@@ -89,8 +119,11 @@ public class LinkedListSteps {
 		assertEquals(actualurl, "https://dsportalapp.herokuapp.com/tryEditor");
 	} 
 	//Scenario 5 Verify the user is able to view the error message without entering code and click on Run button
-	@Given("The user is on Try Editor page")
-	public void the_user_is_on_try_editor_page() {
+	@And("The user navigates to Try Editor page")
+	public void the_user_navigates_to_try_editor_page() {
+		pageObject.clickOnIntro();
+		linkedListIntroPOF.navigateToLinkedListIntroPage(driver);
+		linkedListIntroPOF.tryHere();
 		tryEditorPOF.navigateToTryEditorPage(driver);
 	}
 	
@@ -226,8 +259,10 @@ public class LinkedListSteps {
 	}
 	
 	//Scenario 32 Verify the user is able to view the Practice questions page
+	
 	@When("The user clicks on Practice Questions Link")
 	public void the_user_clicks_on_practice_questions_link() {
+		linkedListIntroPOF.navigateToLinkedListIntroPage(driver);
 		linkedListIntroPOF.practiceQns();
 	}
 	
