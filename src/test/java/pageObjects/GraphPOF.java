@@ -91,12 +91,7 @@ public class GraphPOF {
 			Practice_Questions.click();
 			
 		}
-  		public void  navigateTo(String pagename)
-  	    {
-  	        
-  			 String TryEditor= ConfigReader.geturl(pagename);
-  		        driver.get(TryEditor);
-  	    }
+ 	    
   		public String getErrorOnTryEditor(String message) {
 			return message;
 		}
