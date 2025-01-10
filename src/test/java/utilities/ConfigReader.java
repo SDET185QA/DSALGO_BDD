@@ -38,25 +38,6 @@ public class ConfigReader {
 			throw new RuntimeException("url not specified in the Configuration.properties file.");
 	}
 	
-	//Method to retrieve dsalgo Homepage url
-	public static String gethomeUrl(String key) {
-		String homepageurl = properties.getProperty(key);
-		System.out.println(homepageurl);
-		if (homepageurl != null)
-			return homepageurl;
-		else
-			throw new RuntimeException("url not specified in the Configuration.properties file.");
-	}
-	
-	//Method to retrieve dsalgo Loginpage url
-	public static String getloginUrl(String key) {
-		String loginpageurl = properties.getProperty(key);
-		System.out.println(loginpageurl);
-		if (loginpageurl != null)
-			return loginpageurl;
-		else
-			throw new RuntimeException("url not specified in the Configuration.properties file.");
-	}
 	
 	
 	public static String getBrowserType() {
@@ -69,7 +50,6 @@ public class ConfigReader {
 	}
 	
 
-	
 	
 	public static String getexcelfilepath() {
         String excelfilelpath = properties.getProperty("excelFilePath");
