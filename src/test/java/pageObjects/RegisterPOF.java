@@ -12,9 +12,6 @@ import utilities.ConfigReader;
 public class RegisterPOF {
 	
 	WebDriver driver;
-//	public static String homePageUrl = "https://dsportalapp.herokuapp.com/";
-//	public static String secondHomePageUrl = "https://dsportalapp.herokuapp.com/home";
-	public static String registerPageUrl = ConfigReader.getRegistrationUrl();
 	
 	@FindBy (xpath = "//a[@href=\"/home\"]/button[@class=\"btn\"]") 
 	WebElement getStartedBtn;  //Home page
@@ -45,7 +42,6 @@ public class RegisterPOF {
 	
 	public void navigateToRegistrationPage(WebDriver webDriver) {
 		driver = webDriver;
-		driver.get(registerPageUrl);
 		PageFactory.initElements(driver, this);
 	}
 	

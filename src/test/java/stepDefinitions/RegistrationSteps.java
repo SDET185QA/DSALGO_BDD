@@ -5,6 +5,8 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pageObjects.HomePagePOF;
+import pageObjects.LoginPOF;
 import pageObjects.RegisterPOF;
 import utilities.ConfigReader;
 import utilities.ExcelReader;
@@ -25,8 +27,10 @@ public class RegistrationSteps {
 	
 	WebDriver driver = DriverFactory.getDriver();
 	RegisterPOF pageObject = new RegisterPOF();
-
+	LoginPOF loginPOF = new LoginPOF();
+	HomePagePOF homepagePOF = new HomePagePOF();
 	ExcelReader excelReader = new ExcelReader();
+
 
 //	//Scenario1: Verify the user is able to launch the web page
 //	@Given("The user is on the home page")
@@ -68,6 +72,8 @@ public class RegistrationSteps {
 	//Scenario3: Verify the user receives error message for all empty fields during registration
 	@Given("The user is on the registration page")
 	public void the_user_is_on_the_registration_page() {
+		homepagePOF.getstarted_btn();
+		homepagePOF.registerLink();
 		pageObject.navigateToRegistrationPage(driver);
 	}
 

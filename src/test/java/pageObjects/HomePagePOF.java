@@ -52,6 +52,7 @@ public class HomePagePOF {
 	//DS-Algo Main url
 	public void dsalgoportal() {
 		driver.get(url);
+		PageFactory.initElements(driver,this);
 	}
 
 	//Get Started Button

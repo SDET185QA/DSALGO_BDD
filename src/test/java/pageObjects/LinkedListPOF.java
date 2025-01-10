@@ -16,7 +16,6 @@ import utilities.ConfigReader;
 public class LinkedListPOF {
 
 	WebDriver driver;
-	public static String linkedListPageUrl = ConfigReader.getLinkedListUrl();
 		
 	@FindBy (xpath = "//a[@href=\"introduction\"]")
 //	@FindBy(xpath="//a[@href=\"/linked-list/introduction/\"]")
@@ -54,7 +53,6 @@ public class LinkedListPOF {
 	
 	public void navigateToLinkedListPage(WebDriver webDriver) {
 		driver = webDriver;
-		driver.get(linkedListPageUrl);
 		PageFactory.initElements(driver,this);
 		}
 	
@@ -130,7 +128,7 @@ public class LinkedListPOF {
    }
 
    public void tryHereOnSubPage() {
-	  // driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+	   driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 	   driver.findElement(By.xpath("//a[@href=\"/tryEditor\"]")).click();
    }
 

@@ -5,10 +5,18 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pageObjects.HomePagePOF;
 import pageObjects.LinkedListIntroPOF;
 import pageObjects.LinkedListPOF;
+import pageObjects.LoginPOF;
 import pageObjects.TryEditorPOF;
+import utilities.ConfigReader;
+import utilities.ExcelReader;
 import webDriverManager.DriverFactory;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
@@ -16,6 +24,7 @@ import static org.testng.Assert.assertNotEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -27,6 +36,22 @@ public class LinkedListSteps {
 	LinkedListPOF pageObject = new LinkedListPOF();
 	LinkedListIntroPOF linkedListIntroPOF = new LinkedListIntroPOF();
 	TryEditorPOF tryEditorPOF = new TryEditorPOF();
+	LoginPOF loginPOF = new LoginPOF();
+	HomePagePOF homepagePOF = new HomePagePOF();
+	ExcelReader excelReader = new ExcelReader();
+
+	
+	@Given ("The user logged in to dsAlgo Portal with credentials from {string} and row {int}")
+	public void the_user_logged_in_to_dsalgo_portal_and_should_be_in_linkedlist_page(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+		String username = data.get(rowNumber - 2).get("username");
+		String password = data.get(rowNumber - 2).get("password");
+		
+		homepagePOF.getstarted_btn();
+		loginPOF.clickOnSignin();
+		loginPOF.enter_login_credentails(username, password);
+		loginPOF.clickonLogin();
+	}
 	
 	//Commenting these for time being
 	//Scenario 1
@@ -65,8 +90,10 @@ public class LinkedListSteps {
 	//Scenario 3 Verify the user is able to view the Introduction page
 	@Given("The user is on the Linked list page")
 	public void the_user_is_on_the_linked_list_page() {
+		homepagePOF.getStartedhome("Linked List");
 		pageObject.navigateToLinkedListPage(driver);
 	}
+	
 	@When("The user clicks on Introduction link")
 	public void the_user_clicks_on_introduction_link() {
 		pageObject.clickOnIntro();
@@ -78,9 +105,12 @@ public class LinkedListSteps {
 		assertEquals(actualurl,"https://dsportalapp.herokuapp.com/linked-list/introduction/");
 	}
 	//Scenario 4 Validiation of try editor page open
-	@Given("The user is on the Introduction page")
+//	@Given("The user is on the Introduction page")
+	@And ("The user is on the Introduction page")
 	public void the_user_is_on_the_introduction_page() {
+		pageObject.clickOnIntro();
 		linkedListIntroPOF.navigateToLinkedListIntroPage(driver);
+		
 	}
 	
 	@Then("The user should land on try editor page")
@@ -89,8 +119,11 @@ public class LinkedListSteps {
 		assertEquals(actualurl, "https://dsportalapp.herokuapp.com/tryEditor");
 	} 
 	//Scenario 5 Verify the user is able to view the error message without entering code and click on Run button
-	@Given("The user is on Try Editor page")
-	public void the_user_is_on_try_editor_page() {
+	@And("The user navigates to Try Editor page")
+	public void the_user_navigates_to_try_editor_page() {
+		pageObject.clickOnIntro();
+		linkedListIntroPOF.navigateToLinkedListIntroPage(driver);
+		linkedListIntroPOF.tryHere();
 		tryEditorPOF.navigateToTryEditorPage(driver);
 	}
 	
@@ -107,9 +140,14 @@ public class LinkedListSteps {
 	}
 	
 	// Scenario 6 Verify If User is able to execute the valid python code in Try Editor
-	@When("The user enters {string} in try editor")
-	public void the_user_enters_code_in_try_editor(String code) {
-	     tryEditorPOF.executeCode(code);
+	@When ("The user enters code from {string} and {int} from try editor")
+//	@When("The user enters {string} in try editor")
+	public void the_user_enters_code_in_try_editor(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+		
+		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+		String pythonCode = data.get(rowNumber - 2).get("PythonCode");
+		tryEditorPOF.navigateToTryEditorPage(driver);
+		tryEditorPOF.executeCode(pythonCode);
 	}
 	
 	@And("The user click on Run button")
@@ -121,7 +159,7 @@ public class LinkedListSteps {
 	@Then("The user should be able to view the result in console window")
 	public void the_user_should_be_able_to_view_the_result_in_console_window() {
 		String actualRes = tryEditorPOF.outputConsole();
-		assertEquals(actualRes, "Hello");
+		assertEquals(actualRes, "Welcome");
 		
 	}
 	//Scenario 7 Verify If User is able to execute the invalid python code in Try Editor 
@@ -226,8 +264,10 @@ public class LinkedListSteps {
 	}
 	
 	//Scenario 32 Verify the user is able to view the Practice questions page
+	
 	@When("The user clicks on Practice Questions Link")
 	public void the_user_clicks_on_practice_questions_link() {
+		linkedListIntroPOF.navigateToLinkedListIntroPage(driver);
 		linkedListIntroPOF.practiceQns();
 	}
 	
@@ -239,8 +279,11 @@ public class LinkedListSteps {
 
 	//Scenario Outline 33: Verify the user is able to navigate to try editor page from every sub pages on Linkedlist
 	 
-	@When("The user navigate to {string}")
-	public void the_user_navigate_to_sub_page(String subPage) {
+	@When("The user navigate to subpage from {string} and {int}")
+	public void the_user_navigate_to_sub_page(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+		String subPage = data.get(rowNumber - 2).get("SubPage");
+		tryEditorPOF.navigateToTryEditorPage(driver);
 		pageObject.openSubPage(subPage);
 	}
 	

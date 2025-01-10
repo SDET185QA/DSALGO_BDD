@@ -1,13 +1,13 @@
 @registration
 Feature:Registration
 
-#@Tag1
+#@Tag1 Always empty
   #Scenario: Verify the user is able to launch the webpage
     #Given The user is on the home page 
     #When The user clicks Get Started button on the home page
     #Then The user should be redirected to the secondary home page
 #
-#@Tag2
+#@Tag2 Always empty
 #	Scenario: Verify the user is able to land on Registration
 #		Given The user is on the secondary home page 
 #		When The user clicks Register link on the Home page
@@ -78,10 +78,10 @@ Feature:Registration
  #Given The user is on the registration page 
  #When The user clicks Register button after entering  with valid "<username>", "<password>" and "<passwordConfirmation>" in related textboxes 
  #Then The user should be redirected to Home Page of DS Algo with message New Account Created. You are logged in as <ID>
-	#Examples:
-	#|username|password|passwordConfirmation|
-	#|Jack|Algo24|Algo24|
- 
+#	#Examples:
+#	#|username|password|passwordConfirmation|
+#	#|Jack|Algo24|Algo24|
+ #
  @Tag11
  Scenario Outline: Verify that the user receives the error message for entering username less than 8 characters
  Given The user is on the registration page 

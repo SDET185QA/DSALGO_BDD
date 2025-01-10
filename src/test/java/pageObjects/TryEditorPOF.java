@@ -14,7 +14,6 @@ import utilities.ConfigReader;
 public class TryEditorPOF {
 
 	WebDriver driver;
-	public static String tryEditorPageUrl = ConfigReader.getTryEditorPageUrl();
 	@FindBy(xpath = "//form[@id=\"answer_form\"]/button[@type=\"button\"]")
 	WebElement runBtn;
 
@@ -26,7 +25,6 @@ public class TryEditorPOF {
 
 	public void navigateToTryEditorPage(WebDriver webDriver) {
 		driver = webDriver;
-		driver.get(tryEditorPageUrl);
 		driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 		PageFactory.initElements(driver, this);
 	}
