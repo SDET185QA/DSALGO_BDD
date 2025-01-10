@@ -25,7 +25,6 @@ public class StackPOF {
 	
 	public void navigateToStackPage(WebDriver WebDriver) {
 		driver = WebDriver;
-//		driver.get(stackPageUrl);
 		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		PageFactory.initElements(driver,this);
 		}

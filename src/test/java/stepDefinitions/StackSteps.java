@@ -159,4 +159,20 @@ public class StackSteps {
 		assertEquals(actualMsg, "Please enter the code");
 		}
 
+	
+	@And("The user navigates to Try Editor page from Stack")
+	public void the_user_navigates_to_try_editor_page_from_stack() {
+		stackPOF.clickOnOperationsInStack();
+		stackPOF.clickOnTryHereOnSubPage();
+		tryEditorPOF.navigateToTryEditorPage(driver);
+	}
+	
+	@When ("The user navigate to Stack subpage from {string} and {int}")
+	public void the_user_navigate_to_stack_subpage_from(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+		String page = data.get(rowNumber - 2).get("Page");
+//		stackPOF.navigateToStackPage(driver);
+		stackPOF.openSubPage(page);
+	
+	}
 }

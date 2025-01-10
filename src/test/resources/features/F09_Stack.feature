@@ -36,26 +36,26 @@ Then The user should be able to view the details pertaining to the Operation in 
 @Tag6
 	Scenario Outline: Verify the user is able to navigate to practice questions page from every subpages on stack
 	Given The user is on Stack page
-	When The user clicks on "<subpage>"
+	When The user navigate to Stack subpage from "<sheetName>" and <rowNumber>
 	And The user clicks on Practice Questions link
 	Then The user should be able to view the details pertaining to the Practice questions page
 	Examples:
-|subpage|
-|OperationsInStack|	
-|Implementation|
-|Applications|
+|sheetName|rowNumber|
+|StackSubPage|2|
+|StackSubPage|3|
+|StackSubPage|4|
 
 @Tag7
 	Scenario Outline: Verify the user is able to navigate to try editor page from every subpages on stack
 	Given The user is on Stack page
-	When The user click on "<subpage>"
+	When The user navigate to Stack subpage from "<sheetName>" and <rowNumber>
 	And The user clicks on try here link on the subpage
 	Then The user should navigate to try editor page  
 	Examples:
-	|subpage|
-	|OperationsInStack|
-	|Implementation|
-	|Applications|
+|sheetName|rowNumber|
+|StackSubPage|2|
+|StackSubPage|3|
+|StackSubPage|4|
 
 @Tag8
 	Scenario: Verify the user is able to view the error message without entering code and click on Run button on Try Editor Page
@@ -67,22 +67,22 @@ Then The user should be able to view the details pertaining to the Operation in 
 @Tag9
 	Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
 	Given The user is on Stack page
-	And The user is on Try Editor Page
-	When The user enters "<code>" in try editor
+ 	And The user navigates to Try Editor page from Stack
+  When The user enters code from "<sheetName>" and <rowNumber> from try editor
 	And The user click on Run button
   Then The user should be able to view the result in console window
 
 Examples:
-|code|
-|print ('Hello')|
+|sheetName|rowNumber|
+|PythonCode|12|
 	
 @Tag10
 	Scenario Outline: Verify If User is able to execute the invalid python code in Try Editor
 	Given The user is on Stack page
-	And The user is on Try Editor Page
-	When  The user enters "<code>" in try editor 
+ 	And The user navigates to Try Editor page from Stack
+  When The user enters code from "<sheetName>" and <rowNumber> from try editor
 	And The user click on Run button
 	Then The user should get error message in a pop up window
 	Examples:
-	|code|
-	|print ('Hi)|	
+|sheetName|rowNumber|
+|PythonCode|13|

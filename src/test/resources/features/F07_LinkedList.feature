@@ -24,33 +24,34 @@ Feature: Linked List
 	Then The user should be able to view all details pertaining to Introduction
 
 @Tag5
-	Scenario: Verify the user is able to view the error message without entering code and click on Run button
+	Scenario: Verify the user is able to view the error message without entering code and click on Run button 
 Given The user is on the Linked list page
 And The user navigates to Try Editor page
 When The user clicks Run button without entering code
 Then The error message should be displayed
 	
-#@Tag6
-#	Scenario Outline: Verify If User is able to execute the valid python code in Try Editor
-#	Given The user is on the Linked list page
-#	Given The user is on Try Editor page
-#	When The user enters "<code>" in try editor
-#	And The user click on Run button
-  #Then The user should be able to view the result in console window
-#
-#Examples:
-#|code|
-#|print ('Hello')|
-#
-#@Tag7
-#	Scenario Outline: Verify If User is able to execute the invalid python code in Try Editor
-#	Given The user is on Try Editor page
-#	When  The user enters "<code>" in try editor 
-#	And The user click on Run button
-#	Then The user should get error message in a pop up window
-#	Examples:
-#	|code|
-#	|print ('Hi)|	
+@Tag6
+	Scenario Outline: Verify If User is able to execute the valid python code from Try Editor
+	Given The user is on the Linked list page
+	And The user navigates to Try Editor page
+	When The user enters code from "<sheetName>" and <rowNumber> from try editor
+	And The user click on Run button
+  Then The user should be able to view the result in console window
+
+Examples:
+|sheetName|rowNumber|
+|PythonCode|12|
+
+@Tag7
+	Scenario Outline: Verify If User is able to execute the invalid python code in Try Editor
+	Given The user is on the Linked list page
+	And The user navigates to Try Editor page
+	When The user enters code from "<sheetName>" and <rowNumber> from try editor 
+	And The user click on Run button
+	Then The user should get error message in a pop up window
+	Examples:
+	|sheetName|rowNumber|
+	|PythonCode|13|
 
 @Tag8
 	Scenario: Verify the user is able to view the Creating Linked list page
@@ -93,7 +94,6 @@ Then The error message should be displayed
   @Tag32 
   Scenario: Verify the user is able to view the Practice questions page
   Given The user is on the Linked list page
- # Given The user is on the Introduction page 
   And The user is on the Introduction page
   When The user clicks on Practice Questions Link
   Then The user should be able to view contents pertaining to Practice Questions page  
@@ -101,18 +101,18 @@ Then The error message should be displayed
 	@Tag33
 	Scenario Outline: Verify the user is able to navigate to try editor page from every sub pages on Linkedlist
 	Given The user is on the Linked list page 
-	When The user navigate to "<sub page>"
+	When The user navigate to subpage from "<sheetName>" and <rowNumber>
 	And The user clicks on try here link on the sub page
 	Then The user should land on try editor page  
 	Examples:
-	|sub page|
-	|Introduction|
-	|Creating Linked LIst|
-	|Types of Linked List|
-	|Implement Linked List in Python|
-	|Traversal|
-	|Insertion|
-	|Deletion|
-	
+	|sheetName|rowNumber|
+	|SubPage|2|
+	|SubPage|3|
+	|SubPage|4|
+	|SubPage|5|
+	|SubPage|6|
+	|SubPage|7|
+	|SubPage|8|
+
 
 	

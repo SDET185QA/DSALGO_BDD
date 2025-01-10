@@ -140,10 +140,14 @@ public class LinkedListSteps {
 	}
 	
 	// Scenario 6 Verify If User is able to execute the valid python code in Try Editor
-	@When("The user enters {string} in try editor")
-	public void the_user_enters_code_in_try_editor(String code) {
+	@When ("The user enters code from {string} and {int} from try editor")
+//	@When("The user enters {string} in try editor")
+	public void the_user_enters_code_in_try_editor(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+		
+		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+		String pythonCode = data.get(rowNumber - 2).get("PythonCode");
 		tryEditorPOF.navigateToTryEditorPage(driver);
-	     tryEditorPOF.executeCode(code);
+		tryEditorPOF.executeCode(pythonCode);
 	}
 	
 	@And("The user click on Run button")
@@ -155,7 +159,7 @@ public class LinkedListSteps {
 	@Then("The user should be able to view the result in console window")
 	public void the_user_should_be_able_to_view_the_result_in_console_window() {
 		String actualRes = tryEditorPOF.outputConsole();
-		assertEquals(actualRes, "Hello");
+		assertEquals(actualRes, "Welcome");
 		
 	}
 	//Scenario 7 Verify If User is able to execute the invalid python code in Try Editor 
@@ -275,8 +279,11 @@ public class LinkedListSteps {
 
 	//Scenario Outline 33: Verify the user is able to navigate to try editor page from every sub pages on Linkedlist
 	 
-	@When("The user navigate to {string}")
-	public void the_user_navigate_to_sub_page(String subPage) {
+	@When("The user navigate to subpage from {string} and {int}")
+	public void the_user_navigate_to_sub_page(String sheetName, int rowNumber) throws InvalidFormatException, IOException {
+		List<Map<String, String>> data = excelReader.getData(ConfigReader.getexcelfilepath(), sheetName);
+		String subPage = data.get(rowNumber - 2).get("SubPage");
+		tryEditorPOF.navigateToTryEditorPage(driver);
 		pageObject.openSubPage(subPage);
 	}
 	
